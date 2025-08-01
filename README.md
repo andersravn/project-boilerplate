@@ -34,3 +34,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Thoughts
+For now, we use shadcn/ui which depends on Radix. This is to get of the ground more quickly. If we want to reduce dependencies
+we can start building our own components.
+
+## Uniform
+
+### Setup
+You need to have or create a Uniform project. Most of the boilerplate code is included in src/uniform and src/app/uniform. Here are some additional steps you need to hook up your Uniform app.
+
+Add environment variables by renaming .env.example -> .env and follow the instructions at [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-connect-your-app-to-your-uniform-project](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-connect-your-app-to-your-uniform-project)
+
+Add a preview URL [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-1-configure-preview-url](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-1-configure-preview-url)
+
+Add a webhook if you have a deployed app [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-2-configure-webhooks](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-2-configure-webhooks)
+
+### Removal instructioncs
+Reverse the manual setup in the Next.js tutorial [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#2-add-the-uniform-sdk-into-your-app](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#2-add-the-uniform-sdk-into-your-app)
