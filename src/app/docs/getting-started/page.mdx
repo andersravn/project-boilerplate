@@ -1,0 +1,354 @@
+import { CodeBlock } from '@/components/docs/documentation-components';
+import { Alert, Badge } from '@/components/docs/ui-helpers';
+
+# Getting Started
+
+This guide will help you set up and customize the Vertica Frontend Boilerplate for your project.
+
+## Prerequisites
+
+<div className="grid gap-4 md:grid-cols-3 mb-6">
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">Node.js</h3>
+    <Badge variant="default">v18+</Badge>
+    <div className="text-sm text-muted-foreground mt-2">
+      Required for running the development server and build tools.
+    </div>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">Package Manager</h3>
+    <Badge variant="default">npm/yarn/pnpm</Badge>
+    <div className="text-sm text-muted-foreground mt-2">
+      For installing dependencies and running scripts.
+    </div>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">Code Editor</h3>
+    <Badge variant="default">VS Code</Badge>
+    <div className="text-sm text-muted-foreground mt-2">
+      Recommended for TypeScript support and extensions.
+    </div>
+  </div>
+</div>
+
+## Quick Start
+
+### 1. Clone the Repository
+
+<CodeBlock language="bash">
+{`git clone <repository-url> my-project
+cd my-project`}
+</CodeBlock>
+
+### 2. Install Dependencies
+
+<CodeBlock language="bash">
+{`npm install
+# or
+yarn install
+# or
+pnpm install`}
+</CodeBlock>
+
+### 3. Start Development Server
+
+<CodeBlock language="bash">
+{`npm run dev`}
+</CodeBlock>
+
+Your application will be available at `http://localhost:3000`.
+
+### 4. Complete Core Installation
+
+Before using components, set up the required dependencies and utilities:
+
+Visit the [Setup Guide](/docs/components/setup) to set up the core utilities (cva, clsx, tailwind-merge) and CSS variables needed by all components.
+
+### 5. View Documentation
+
+Visit `http://localhost:3000/docs` to see this documentation and component library.
+
+<Alert variant="warning" title="Documentation Access">
+  The `/docs` route is only available in development mode for security reasons.
+</Alert>
+
+## Project Structure
+
+Understanding the project structure will help you navigate and customize the boilerplate:
+
+<CodeBlock language="text">
+{`vertica-fe/
+├── public/                   # Static assets
+├── src/
+│   ├── app/                 # Next.js App Router
+│   │   ├── docs/           # Documentation (dev-only)
+│   │   ├── uniform/        # Uniform CMS routes
+│   │   ├── globals.css     # Global styles
+│   │   ├── layout.tsx      # Root layout
+│   │   └── page.tsx        # Home page
+│   ├── components/
+│   │   ├── ui/             # Reusable UI components
+│   │   └── docs/           # Documentation components
+│   ├── lib/                # Utility functions
+│   ├── types/              # TypeScript definitions
+│   ├── uniform/            # Uniform CMS integration
+│   └── utils/              # Helper utilities
+├── components.json         # shadcn/ui configuration
+├── next.config.ts          # Next.js configuration
+├── package.json            # Dependencies and scripts
+├── tailwind.config.js      # Tailwind CSS configuration
+└── tsconfig.json           # TypeScript configuration`}
+</CodeBlock>
+
+## Configuration
+
+### Tailwind CSS
+
+The project uses Tailwind CSS for styling. Customize your design system in `tailwind.config.js`:
+
+<CodeBlock filename="tailwind.config.js">
+{`module.exports = {
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  theme: {
+    extend: {
+      colors: {
+        // Add your brand colors
+        brand: {
+          50: '#f0f9ff',
+          500: '#3b82f6',
+          900: '#1e3a8a',
+        },
+      },
+      fontFamily: {
+        // Add your custom fonts
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+};`}
+</CodeBlock>
+
+### TypeScript
+
+The project is fully typed with TypeScript. Key configuration files:
+
+- `tsconfig.json` - TypeScript compiler options
+- `next-env.d.ts` - Next.js type definitions
+- `src/types/` - Custom type definitions
+
+### shadcn/ui
+
+Component configuration is managed in `components.json`:
+
+<CodeBlock filename="components.json">
+{`{
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}`}
+</CodeBlock>
+
+## Adding Components
+
+### From shadcn/ui
+
+Add pre-built components using the CLI:
+
+<CodeBlock language="bash">
+{`# Add a single component
+npx shadcn@latest add card
+
+# Add multiple components
+npx shadcn@latest add card dialog sheet
+
+# List available components
+npx shadcn@latest add`}
+</CodeBlock>
+
+### Custom Components
+
+Create your own components in `src/components/ui/`:
+
+<CodeBlock filename="src/components/ui/custom-component.tsx">
+{`import React from 'react';
+import { cn } from '@/lib/utils';
+
+interface CustomComponentProps {
+  children: React.ReactNode;
+  variant?: 'default' | 'secondary';
+  className?: string;
+}
+
+export default function CustomComponent({ 
+  children, 
+  variant = 'default', 
+  className 
+}: CustomComponentProps) {
+  return (
+    <div 
+      className={cn(
+        'base-styles',
+        variant === 'secondary' && 'secondary-styles',
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}`}
+</CodeBlock>
+
+## Customizing for Your Brand
+
+### 1. Colors
+
+Update CSS variables in `src/app/globals.css`:
+
+<CodeBlock filename="src/app/globals.css">
+{`:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;        /* Your brand primary */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  /* Add more custom colors */
+}`}
+</CodeBlock>
+
+### 2. Typography
+
+Add custom fonts and typography scales:
+
+<CodeBlock filename="tailwind.config.js">
+{`theme: {
+  extend: {
+    fontFamily: {
+      sans: ['YourFont', 'system-ui', 'sans-serif'],
+      heading: ['YourHeadingFont', 'serif'],
+    },
+    fontSize: {
+      'brand-xl': ['3.5rem', { lineHeight: '1.1' }],
+      'brand-lg': ['2.5rem', { lineHeight: '1.2' }],
+    },
+  },
+}`}
+</CodeBlock>
+
+### 3. Component Variants
+
+Extend component variants to match your design system:
+
+<CodeBlock filename="src/components/ui/button.tsx">
+{`const buttonVariants = cva(
+  "base-button-styles",
+  {
+    variants: {
+      variant: {
+        default: "default-styles",
+        // Add your custom variants
+        brand: "bg-brand-500 text-white hover:bg-brand-600",
+        gradient: "bg-gradient-to-r from-brand-500 to-brand-600",
+      },
+      // Add custom size variants
+      size: {
+        default: "h-10 px-4 py-2",
+        xs: "h-6 px-2 text-xs",
+        xl: "h-14 px-8 text-lg",
+      },
+    },
+  }
+);`}
+</CodeBlock>
+
+## Next Steps
+
+<div className="grid gap-4 md:grid-cols-2 mb-6">
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">🎨 Design System</h3>
+    <div className="text-sm text-muted-foreground mb-3">
+      Customize colors, typography, and spacing to match your brand.
+    </div>
+    <a href="#customizing-for-your-brand" className="text-primary text-sm hover:underline">
+      Learn more →
+    </a>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">🧩 Components</h3>
+    <div className="text-sm text-muted-foreground mb-3">
+      Add and customize UI components for your application.
+    </div>
+    <a href="/docs" className="text-primary text-sm hover:underline">
+      View components →
+    </a>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">📝 CMS Integration</h3>
+    <div className="text-sm text-muted-foreground mb-3">
+      Set up your preferred CMS or remove unused integrations.
+    </div>
+    <a href="/docs/cms" className="text-primary text-sm hover:underline">
+      CMS guide →
+    </a>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <h3 className="font-semibold mb-2">🚀 Deployment</h3>
+    <div className="text-sm text-muted-foreground mb-3">
+      Deploy your application to production.
+    </div>
+    <a href="#deployment" className="text-primary text-sm hover:underline">
+      Deploy now →
+    </a>
+  </div>
+</div>
+
+## Deployment
+
+### Vercel (Recommended)
+
+<CodeBlock language="bash">
+{`# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+
+# Or connect your Git repository at vercel.com`}
+</CodeBlock>
+
+### Other Platforms
+
+The project works with any platform that supports Next.js:
+
+- **Netlify**: Configure build command as `npm run build`
+- **AWS Amplify**: Use the Next.js preset
+- **Railway**: Connect your repository and deploy
+- **Digital Ocean**: Use the App Platform with Node.js
+
+<Alert title="Environment Variables">
+  Remember to set your environment variables in your deployment platform, especially for CMS integrations.
+</Alert>
+
+## Support & Resources
+
+- **Documentation**: This documentation covers all features
+- **shadcn/ui**: [ui.shadcn.com](https://ui.shadcn.com)
+- **Tailwind CSS**: [tailwindcss.com](https://tailwindcss.com)
+- **Next.js**: [nextjs.org](https://nextjs.org)
+- **TypeScript**: [typescriptlang.org](https://typescriptlang.org)

@@ -1,52 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vertica Frontend Boilerplate
 
-## Getting Started
+A production-ready boilerplate for building React applications with a comprehensive UI component library and CMS integration support.
 
-First, run the development server:
+## Features
+
+🧩 **UI Component Library** - Reusable, accessible components based on shadcn/ui
+📱 **Framework Agnostic** - Works with React standalone or Next.js  
+🎨 **Customizable Design System** - Easy theming with Tailwind CSS
+📝 **CMS Integration** - Boilerplate for Uniform, Contentful, and other CMS systems
+📚 **Comprehensive Documentation** - Interactive docs with copy-paste examples
+🔧 **Developer Experience** - TypeScript, ESLint, and modern tooling
+
+## Quick Start
 
 ```bash
+# Clone the repository
+git clone <repository-url> my-project
+cd my-project
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000/docs` to view the documentation and component library.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Documentation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The `/docs` route provides comprehensive documentation including:
 
-## Learn More
+- **Getting Started Guide** - Setup, configuration, and customization
+- **Component Library** - Interactive demos with copy-paste code
+- **CMS Integration** - Setup guides for different CMS systems
+- **Best Practices** - Development workflows and patterns
 
-To learn more about Next.js, take a look at the following resources:
+> 📝 Documentation is only available in development mode for security.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── docs/           # Documentation (dev-only)
+│   ├── uniform/        # Uniform CMS integration  
+│   └── api/            # API routes
+├── components/
+│   ├── ui/             # UI component library
+│   └── docs/           # Documentation components
+├── lib/                # Utility functions
+├── types/              # TypeScript definitions
+└── uniform/            # CMS-specific code
+```
 
-## Deploy on Vercel
+## UI Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Built with [shadcn/ui](https://ui.shadcn.com) and [Radix UI](https://radix-ui.com):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ✅ Fully accessible (ARIA compliant)
+- ✅ TypeScript support  
+- ✅ Customizable with Tailwind CSS
+- ✅ Works without Next.js
+- ✅ Copy-paste friendly
 
-## Thoughts
-For now, we use shadcn/ui which depends on Radix. This is to get of the ground more quickly. If we want to reduce dependencies
-we can start building our own components.
+### Adding Components
 
-## Uniform
+```bash
+# Add individual components
+npx shadcn@latest add button
+npx shadcn@latest add card
 
-### Setup
-You need to have or create a Uniform project. Most of the boilerplate code is included in src/uniform and src/app/uniform. Here are some additional steps you need to hook up your Uniform app.
+# See available components  
+npx shadcn@latest add
+```
 
-Add environment variables by renaming .env.example -> .env and follow the instructions at [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-connect-your-app-to-your-uniform-project](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-connect-your-app-to-your-uniform-project)
+## CMS Integration
 
-Add a preview URL [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-1-configure-preview-url](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-1-configure-preview-url)
+### Uniform (Included)
+
+Complete integration with visual editing and component mapping.
+
+```bash
+# Set up environment variables
+cp .env.example .env.local
+# Add your Uniform project credentials
+```
+
+### Other CMS Systems
+
+Boilerplate structure supports easy integration with:
+- Contentful
+- Strapi  
+- Sanity
+- Custom headless CMS
+
+Remove unused CMS code to keep your bundle lean.
+
+## Customization
+
+### Design System
+
+Customize colors, typography, and spacing:
+
+```css
+/* src/app/globals.css */
+:root {
+  --primary: your-brand-color;
+  --secondary: your-secondary-color;
+}
+```
+
+### Component Variants
+
+Extend components with your design requirements:
+
+```tsx
+// Add custom button variants
+const buttonVariants = cva(base, {
+  variants: {
+    variant: {
+      brand: "your-brand-styles",
+      gradient: "your-gradient-styles",
+    }
+  }
+});
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+```bash
+npm i -g vercel
+vercel
+```
+
+### Other Platforms
+
+Compatible with any Node.js hosting:
+- Netlify
+- Railway  
+- AWS Amplify
+- Digital Ocean
+
+## Development
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
+
+## What's Included
+
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **shadcn/ui** component library
+- **MDX** for documentation
+- **ESLint & Prettier** for code quality
+- **Uniform CMS** integration (optional)
+
+## Support & Resources
+
+- 📚 [Documentation](http://localhost:3000/docs) (development)
+- 🎨 [shadcn/ui](https://ui.shadcn.com)
+- 🎯 [Tailwind CSS](https://tailwindcss.com)
+- ⚛️ [Next.js](https://nextjs.org)
+
+---
+
+**Built with ❤️ for developer productivity and design system consistency.**
 
 Add a webhook if you have a deployed app [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-2-configure-webhooks](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#3-2-configure-webhooks)
 

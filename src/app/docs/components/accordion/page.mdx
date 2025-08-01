@@ -1,0 +1,313 @@
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { CodeBlock, ComponentPreview, PropsTable } from '@/components/docs/documentation-components';
+import { Alert } from '@/components/docs/ui-helpers';
+
+# Accordion
+
+A collapsible content component perfect for FAQs, feature lists, and content organization.
+
+## Preview
+
+<ComponentPreview>
+  <Accordion type="single" collapsible className="w-full max-w-md">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>What is this component?</AccordionTrigger>
+      <AccordionContent>
+        This is an accordion component built with Radix UI primitives. It allows you to show and hide content sections.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Is it accessible?</AccordionTrigger>
+      <AccordionContent>
+        Yes! It follows WAI-ARIA design patterns and supports keyboard navigation.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-3">
+      <AccordionTrigger>Can I customize the styling?</AccordionTrigger>
+      <AccordionContent>
+        Absolutely. The component uses Tailwind CSS classes and can be easily customized.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentPreview>
+
+### Multiple Items Open
+
+<ComponentPreview>
+  <Accordion type="multiple" className="w-full max-w-md">
+    <AccordionItem value="item-1">
+      <AccordionTrigger>Multiple items can be open</AccordionTrigger>
+      <AccordionContent>
+        When type="multiple", you can have several accordion items open at the same time.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="item-2">
+      <AccordionTrigger>Independent sections</AccordionTrigger>
+      <AccordionContent>
+        Each section operates independently when using multiple type.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</ComponentPreview>
+
+## Installation
+
+Install the required dependencies:
+
+<CodeBlock language="bash">
+{`npm install @radix-ui/react-accordion lucide-react`}
+</CodeBlock>
+
+<Alert title="Prerequisites">
+  Make sure you have completed the [core installation](/docs/installation) for the required utilities (cn function from clsx + tailwind-merge).
+</Alert>
+
+## Code
+
+Copy and paste the following code into your project:
+
+<CodeBlock filename="src/components/ui/accordion.tsx">
+{`"use client"
+
+import * as React from "react"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { ChevronDownIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+function Accordion({
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
+}
+
+function AccordionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Item>) {
+  return (
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={cn("border-b last:border-b-0", className)}
+      {...props}
+    />
+  )
+}
+
+function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={cn(
+          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  )
+}
+
+function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  return (
+    <AccordionPrimitive.Content
+      data-slot="accordion-content"
+      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      {...props}
+    >
+      <div className={cn("pt-0 pb-4", className)}>{children}</div>
+    </AccordionPrimitive.Content>
+  )
+}
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }`}
+</CodeBlock>
+
+## Usage
+
+<CodeBlock filename="your-component.tsx">
+{`import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+export default function FAQ() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>How do I get started?</AccordionTrigger>
+        <AccordionContent>
+          Copy the component code and install the required dependencies.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Can I customize it?</AccordionTrigger>
+        <AccordionContent>
+          Yes, you can modify the Tailwind classes or add your own styling.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+</CodeBlock>
+
+### Controlled State
+
+<CodeBlock>
+{`import { useState } from 'react';
+
+export default function ControlledAccordion() {
+  const [value, setValue] = useState<string>("");
+
+  return (
+    <Accordion 
+      type="single" 
+      collapsible 
+      value={value} 
+      onValueChange={setValue}
+    >
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Controlled item</AccordionTrigger>
+        <AccordionContent>
+          This accordion's state is controlled by React state.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`}
+</CodeBlock>
+
+## Props
+
+### Accordion
+
+<PropsTable props={[
+  {
+    name: "type",
+    type: '"single" | "multiple"',
+    description: "Whether only one or multiple items can be open at once"
+  },
+  {
+    name: "collapsible",
+    type: "boolean",
+    description: "Whether items can be collapsed (only applies to single type)"
+  },
+  {
+    name: "value", 
+    type: "string | string[]",
+    description: "The controlled value(s) of the expanded item(s)"
+  },
+  {
+    name: "onValueChange",
+    type: "(value: string | string[]) => void",
+    description: "Callback when the expanded state changes"
+  },
+  {
+    name: "defaultValue",
+    type: "string | string[]",
+    description: "The default value(s) for uncontrolled usage"
+  }
+]} />
+
+### AccordionItem
+
+<PropsTable props={[
+  {
+    name: "value",
+    type: "string",
+    description: "Unique identifier for this accordion item"
+  },
+  {
+    name: "className",
+    type: "string",
+    description: "Additional CSS classes"
+  }
+]} />
+
+### AccordionTrigger
+
+<PropsTable props={[
+  {
+    name: "className",
+    type: "string",
+    description: "Additional CSS classes for the trigger button"
+  },
+  {
+    name: "children",
+    type: "ReactNode",
+    description: "The trigger content (usually text)"
+  }
+]} />
+
+### AccordionContent
+
+<PropsTable props={[
+  {
+    name: "className",
+    type: "string",
+    description: "Additional CSS classes for the content container"
+  },
+  {
+    name: "children",
+    type: "ReactNode",
+    description: "The content to show when expanded"
+  }
+]} />
+
+## Animations
+
+The component includes smooth expand/collapse animations. You may need to add these to your Tailwind config:
+
+<CodeBlock filename="tailwind.config.js">
+{`module.exports = {
+  theme: {
+    extend: {
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+}`}
+</CodeBlock>
+
+## Accessibility
+
+- **Keyboard Navigation**: Use Arrow keys to navigate between triggers, Enter/Space to toggle
+- **ARIA Labels**: Automatically managed by Radix UI primitives
+- **Screen Reader Support**: Proper announcement of expand/collapse states
+- **Focus Management**: Focus is properly managed when items open/close
+
+## Customization
+
+You can customize the accordion by modifying the Tailwind classes or adding your own styles:
+
+<CodeBlock>
+{`// Custom styling example
+<AccordionTrigger className="text-lg font-bold text-blue-600">
+  Custom styled trigger
+</AccordionTrigger>
+
+<AccordionContent className="text-gray-600 bg-gray-50 p-4 rounded">
+  Custom styled content area
+</AccordionContent>`}
+</CodeBlock>
