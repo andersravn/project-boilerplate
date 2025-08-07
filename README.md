@@ -1,4 +1,4 @@
-# Vertica Frontend Boilerplate
+# CMS Frontend Boilerplate
 
 A production-ready boilerplate for building React applications with a comprehensive UI component library and CMS integration support.
 
@@ -178,3 +178,39 @@ Add a webhook if you have a deployed app [https://docs.uniform.app/docs/learn/tu
 
 ### Removal instructioncs
 Reverse the manual setup in the Next.js tutorial [https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#2-add-the-uniform-sdk-into-your-app](https://docs.uniform.app/docs/learn/tutorials/nextjs-app-router#2-add-the-uniform-sdk-into-your-app)
+
+## Security
+
+### Content Security Policy
+Applied in next.config.ts. Consider whether a nonce approach is needed, through middleware.ts. Read the Next.js docs:
+
+https://nextjs.org/docs/app/guides/content-security-policy
+
+## Type generation
+Configure endpoint in openapi-ts.config.ts.
+
+Example:
+```ts
+import { defineConfig } from "@hey-api/openapi-ts";
+import { config } from "dotenv";
+
+// Load environment variables from .env file
+config();
+
+export default defineConfig({
+    input: `${process.env.UMBRACO_API}/umbraco/swagger/delivery/swagger.json`,
+    output: "src/types/umbraco",
+    plugins: ["@hey-api/client-fetch"],
+});
+
+```
+
+## TODO
+[ ] Security headers
+[ ] Umbraco components like UmbracoImage and Umbraco Link
+[ ] TS generation for Umbraco
+[ ] NIS2 hjælp
+[ ] Min/max width "site"/content (nav/footer and content)
+sitemap.xml - support for different languages
+robots.txt
+[ ] Logging

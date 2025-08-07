@@ -13,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 {/* Sidebar Navigation */}
                 <aside className="w-64 border-r bg-muted/20 p-6">
                     <div className="mb-8">
-                        <h2 className="text-lg font-semibold">Vertica Docs</h2>
+                        <h2 className="text-lg font-semibold">CMS Docs</h2>
                         <p className="text-sm text-muted-foreground">Component library & guides</p>
                     </div>
                     
@@ -64,6 +64,11 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             <h3 className="font-medium text-sm mb-2">Integration</h3>
                             <ul className="space-y-1 text-sm">
                                 <li>
+                                    <Link href="/docs/requirements" className="text-muted-foreground hover:text-foreground transition-colors">
+                                        Requirements
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link href="/docs/cms" className="text-muted-foreground hover:text-foreground transition-colors">
                                         CMS Setup
                                     </Link>
@@ -82,7 +87,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 {/* Main Content */}
                 <main className="flex-1">
                     <div className="container mx-auto px-8 py-8 max-w-4xl">
-                        <div className="prose prose-gray dark:prose-invert max-w-none">
+                        <div className="max-w-none">
                             {children}
                         </div>
                     </div>

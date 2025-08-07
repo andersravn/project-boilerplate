@@ -3,8 +3,8 @@
       type ComponentProps, 
       DefaultNotImplementedComponent 
     } from '@uniformdev/canvas-next-rsc/component';
-import { Container } from '@/uniform/components/Container';
-import { Hero } from '@/uniform/components/Hero';
+import { Container } from '@/uniform/canvas/Container';
+import { Hero } from '@/uniform/canvas/Hero';
 
     export const resolveComponent: ResolveComponentFunction = ({
       component

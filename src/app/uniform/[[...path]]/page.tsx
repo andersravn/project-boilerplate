@@ -3,7 +3,7 @@
    retrieveRoute,
    UniformComposition,
  } from "@uniformdev/canvas-next-rsc";
- import { resolveComponent } from "../../../uniform/components";
+ import { resolveComponent } from "../../../uniform/canvas";
 
  // Uncomment to statically render routes at build time
  // export { generateStaticParams } from '@uniformdev/canvas-next-rsc';

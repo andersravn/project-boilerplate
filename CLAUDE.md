@@ -1,4 +1,4 @@
-# Vertica Frontend Boilerplate
+# CMS Frontend Boilerplate
 
 ## Project Overview
 

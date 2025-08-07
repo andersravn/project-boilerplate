@@ -2,7 +2,7 @@
     UniformPlayground,
     UniformPlaygroundProps,
   } from "@uniformdev/canvas-next-rsc";
-  import { resolveComponent } from "../../uniform/components";
+  import { resolveComponent } from "../../uniform/canvas";
 
   export default function PlaygroundPage(props: {
     searchParams: UniformPlaygroundProps["searchParams"];

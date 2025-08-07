@@ -1,0 +1,356 @@
+import { Alert, Badge } from '@/components/docs/ui-helpers';
+import { CodeBlock } from '@/components/docs/documentation-components';
+
+# Requirements Gathering
+
+A comprehensive guide for planning CMS projects and gathering client requirements. Use these questions and checklists in client meetings to ensure you capture all necessary project details.
+
+## Pre-Meeting Preparation
+
+<Alert title="Meeting Checklist">
+  Print or prepare digital copies of the checklists below. Take notes directly on these forms during client meetings to ensure nothing is missed.
+</Alert>
+
+---
+
+## 1. General Planning & Naming Conventions
+
+### Questions to Ask Clients
+
+**Component Naming:**
+- [ ] What language should component names be in? (Danish/English/Mixed)
+- [ ] Do you have existing naming conventions we should follow?
+- [ ] Who will be responsible for naming new components?
+- [ ] Should component names be technical or user-friendly?
+
+**Component Overview:**
+- [ ] Do you want a component library page in the CMS showing all available components?
+- [ ] Should this include visual examples of each component variant?
+- [ ] Who will maintain this documentation?
+
+**Content Structure:**
+- [ ] How many levels deep should your site hierarchy go? (e.g., max 3 levels)
+- [ ] What types of content will you publish? (pages, news, products, events, etc.)
+- [ ] Do you need different page templates for different content types?
+- [ ] Should editors be able to mix components freely or use predefined layouts?
+
+### Developer Deliverables
+- Component naming convention document
+- Site hierarchy diagram
+- Content type specification
+- Component library page in CMS
+
+---
+
+## 2. Multi-language & Translation Support
+
+### Questions to Ask Clients
+
+**CMS Interface Language:**
+- [ ] What language should the CMS interface be in for your editors?
+- [ ] Can we customize field labels to match your preferred language?
+- [ ] Do different user roles need different interface languages?
+
+**Content Translation:**
+- [ ] Which languages will your content be available in?
+- [ ] Should all content be available in all languages, or can some be language-specific?
+- [ ] Do you have translators, or will you use translation services?
+- [ ] Do you need translation workflow tools built in?
+
+**Fallback Strategies:**
+- [ ] What should happen if a page isn't translated? (show default language, hide page, show placeholder)
+- [ ] Should untranslated components fall back to the default language?
+- [ ] Do you need automatic translation detection based on user location?
+
+### Developer Deliverables
+- Multi-language content strategy
+- Fallback behavior specification
+- Translation workflow documentation
+
+---
+
+## 3. Editorial Experience & Content Management
+
+### Questions to Ask Clients
+
+**Content Editing:**
+- [ ] How comfortable are your editors with technology? (beginner/intermediate/advanced)
+- [ ] Do you prefer visual/WYSIWYG editing or form-based editing?
+- [ ] Should editors be able to preview content before publishing?
+- [ ] Do you need inline editing capabilities (edit directly on the live page)?
+
+**Typography & Formatting:**
+- [ ] Do you have long words that need special line-break handling?
+- [ ] Do you need special characters or formatting options?
+- [ ] Should editors control fonts, colors, or is that strictly design-controlled?
+
+**Custom Editing Tools:**
+- [ ] Do you need special input types? (icon picker, color picker, map selector)
+- [ ] Are there repetitive tasks we can automate for editors?
+- [ ] Do you need bulk editing capabilities?
+
+**Help & Guidance:**
+- [ ] Do your editors need help text or tooltips for form fields?
+- [ ] Should we provide editing guidelines or style guides within the CMS?
+- [ ] Do you want training materials built into the system?
+
+**Content Validation:**
+- [ ] Which fields are required vs. optional?
+- [ ] Are there character limits for any fields?
+- [ ] Do you need SEO validation (meta descriptions, title lengths)?
+- [ ] Should the system prevent publishing incomplete content?
+
+### Developer Deliverables
+- Editor experience specification
+- Custom input component requirements
+- Validation rules documentation
+- Help text and tooltip content
+
+---
+
+## 4. Media & Asset Management
+
+### Questions to Ask Clients
+
+**Image Handling:**
+- [ ] Do you need automatic image resizing/optimization?
+- [ ] Should editors choose crop areas for different display formats?
+- [ ] What image formats do you need to support?
+- [ ] Do you have size or quality requirements?
+
+**Alt Text & Accessibility:**
+- [ ] Should editors write custom alt text for each image use?
+- [ ] Do you need accessibility compliance (WCAG guidelines)?
+- [ ] Should alt text be context-aware (same image, different descriptions)?
+
+**File Management:**
+- [ ] What file types do you need to support? (PDF, video, documents)
+- [ ] Do you need file categorization or tagging?
+- [ ] Should there be file size limits?
+- [ ] Do you need a DAM (Digital Asset Management) system?
+
+### Developer Deliverables
+- Image processing pipeline
+- Alt text strategy
+- File upload and storage specification
+
+---
+
+## 5. User Roles & Permissions
+
+### Questions to Ask Clients
+
+**User Types:**
+- [ ] How many people will use the CMS?
+- [ ] What are their roles? (content creator, editor, publisher, administrator)
+- [ ] Should different roles have access to different content types?
+- [ ] Do you need external contributor access (guest writers, agencies)?
+
+**Workflow Requirements:**
+- [ ] Do you need approval workflows before content goes live?
+- [ ] Should there be content scheduling capabilities?
+- [ ] Do you need draft/review/published status tracking?
+- [ ] Should there be email notifications for workflow steps?
+
+**Audit & History:**
+- [ ] Do you need to track who changed what and when?
+- [ ] Should there be content version history?
+- [ ] Do you need content backup and restore capabilities?
+- [ ] Are there compliance requirements for content tracking?
+
+### Developer Deliverables
+- User role specification
+- Workflow diagram
+- Audit logging requirements
+
+---
+
+## 6. Integrations & Third-Party Services
+
+### Questions to Ask Clients
+
+**Existing Systems:**
+- [ ] What existing systems need to integrate with the website? (CRM, ERP, email marketing)
+- [ ] Do you use specific newsletter services? (Mailchimp, Klaviyo, etc.)
+- [ ] Are there analytics tools that need special setup? (Google Analytics, Facebook Pixel)
+- [ ] Do you need e-commerce functionality? (payment processing, inventory)
+
+**External Content:**
+- [ ] Do you pull content from other sources? (social media, news feeds, APIs)
+- [ ] Should content be synchronized automatically or manually?
+- [ ] Are there real-time data requirements?
+
+**Marketing Tools:**
+- [ ] Do you use marketing automation tools?
+- [ ] Are there A/B testing requirements?
+- [ ] Do you need lead capture forms with CRM integration?
+
+### Developer Deliverables
+- Integration architecture diagram
+- API documentation and requirements
+- Data synchronization strategy
+
+---
+
+## 7. Performance & Technical Requirements
+
+### Essential Performance Checklist
+
+**Core Web Vitals:**
+- [ ] Target Largest Contentful Paint (LCP) < 2.5s
+- [ ] Target First Input Delay (FID) < 100ms
+- [ ] Target Cumulative Layout Shift (CLS) < 0.1
+
+**Image Optimization:**
+- [ ] Implement responsive images with srcset
+- [ ] Use modern formats (WebP, AVIF) with fallbacks
+- [ ] Lazy loading for below-the-fold images
+- [ ] Proper sizing to prevent layout shifts
+
+**Content Delivery:**
+- [ ] CDN setup for static assets
+- [ ] Gzip/Brotli compression enabled
+- [ ] Browser caching strategy
+- [ ] Database query optimization
+
+**SEO Fundamentals:**
+- [ ] Semantic HTML structure
+- [ ] Proper heading hierarchy (H1-H6)
+- [ ] Meta descriptions and title tags
+- [ ] Open Graph and Twitter Card tags
+- [ ] XML sitemap generation
+- [ ] Robots.txt configuration
+- [ ] Schema.org structured data
+
+### Questions to Ask Clients
+
+**Performance Expectations:**
+- [ ] What are your page load time expectations?
+- [ ] Do you have high-traffic periods we need to plan for?
+- [ ] Are there specific devices/browsers that are critical?
+- [ ] Do you have existing performance benchmarks?
+
+**SEO Requirements:**
+- [ ] Do you have SEO goals or existing rankings to maintain?
+- [ ] Are there specific keywords or content strategies?
+- [ ] Do you need analytics and reporting dashboards?
+- [ ] Should editors have SEO guidance built into the CMS?
+
+### Developer Deliverables
+- Performance budget specification
+- SEO strategy document
+- Technical architecture plan
+
+---
+
+## Common Project Tasks Checklist
+
+### Every CMS Project Should Include:
+
+**Planning Phase:**
+- [ ] Requirements gathering (use checklists above)
+- [ ] Content audit of existing site
+- [ ] User journey mapping
+- [ ] Component library design
+- [ ] Information architecture diagram
+
+**Development Phase:**
+- [ ] Component development with preview capability
+- [ ] CMS configuration and content modeling
+- [ ] Editor training materials
+- [ ] Performance optimization
+- [ ] SEO implementation
+- [ ] Accessibility testing
+
+**Launch Phase:**
+- [ ] Content migration strategy
+- [ ] Editor training sessions
+- [ ] QA testing with real content
+- [ ] Performance testing under load
+- [ ] Analytics setup and goal tracking
+
+**Post-Launch:**
+- [ ] Editor feedback collection
+- [ ] Performance monitoring setup
+- [ ] Ongoing support plan
+- [ ] Content strategy documentation
+
+---
+
+## Meeting Templates
+
+### Initial Requirements Meeting Agenda
+
+<CodeBlock language="text">
+{`CMS Requirements Meeting - [Client Name]
+Date: [Date]
+Attendees: [List]
+
+1. Project Overview (15 min)
+   - Business goals
+   - Target audience
+   - Success metrics
+
+2. Content Strategy (30 min)
+   - Use General Planning checklist
+   - Review content types needed
+   - Discuss site structure
+
+3. Editorial Team (20 min)
+   - Use Editorial Experience checklist
+   - Identify user roles
+   - Discuss workflows
+
+4. Technical Requirements (15 min)
+   - Use Performance checklist
+   - Discuss integrations
+   - Review hosting requirements
+
+5. Timeline & Next Steps (10 min)
+   - Key milestones
+   - Deliverables schedule
+   - Follow-up meetings
+
+Action Items:
+- [ ] [Developer] Send meeting summary
+- [ ] [Client] Provide content audit
+- [ ] [Developer] Create technical specification
+- [ ] [Both] Schedule follow-up in 1 week`}
+</CodeBlock>
+
+### Follow-up Technical Meeting
+
+<CodeBlock language="text">
+{`Technical Deep-dive Meeting - [Client Name]
+Date: [Date]
+
+Focus Areas:
+1. Multi-language requirements (if applicable)
+2. User roles and permissions details
+3. Integration specifications
+4. Performance requirements
+5. Launch timeline
+
+Bring:
+- Completed requirement checklists
+- Technical questions from development team
+- Sample content for testing
+- Existing brand/style guidelines`}
+</CodeBlock>
+
+---
+
+## Tips for Successful Requirement Gathering
+
+<Alert title="Pro Tips" variant="default">
+  <ul className="list-disc list-inside space-y-2">
+    <li><strong>Record sessions:</strong> With permission, record meetings to catch details you might miss</li>
+    <li><strong>Ask for examples:</strong> Have clients show you sites they like and dislike</li>
+    <li><strong>Test assumptions:</strong> Don't assume - always ask clarifying questions</li>
+    <li><strong>Think long-term:</strong> Ask about future needs and growth plans</li>
+    <li><strong>Involve editors:</strong> Include actual content creators in planning meetings</li>
+    <li><strong>Document everything:</strong> Send meeting summaries for confirmation</li>
+  </ul>
+</Alert>
+
+Use these checklists and questions to ensure you capture all necessary requirements and set your CMS projects up for success.

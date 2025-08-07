@@ -52,7 +52,7 @@ The Uniform integration is organized as follows:
 │   └── [[...path]]/
 │       └── page.tsx          # Catch-all route for CMS pages
 ├── uniform/
-│   ├── components/
+│   ├── canvas/
 │   │   ├── Container.tsx     # Layout component
 │   │   ├── Hero.tsx         # Hero section component
 │   │   └── index.ts         # Component registry
@@ -66,7 +66,7 @@ The Uniform integration is organized as follows:
 
 Register your UI components for use in Uniform:
 
-<CodeBlock filename="src/uniform/components/index.ts">
+<CodeBlock filename="src/uniform/canvas/index.ts">
 {`import { ComponentInstance } from '@uniformdev/canvas';
 import { Hero } from './Hero';
 import { Container } from './Container';
@@ -88,7 +88,7 @@ export type ComponentProps<T = ComponentInstance> = {
 
 Wrap your UI components for CMS use:
 
-<CodeBlock filename="src/uniform/components/Hero.tsx">
+<CodeBlock filename="src/uniform/canvas/Hero.tsx">
 {`import { ComponentProps } from './index';
 import Button from '@/components/ui/button';
 
