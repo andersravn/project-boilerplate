@@ -1,7 +1,11 @@
 import { Badge } from '@/components/docs/ui-helpers';
 import { Alert } from '@/components/docs/ui-helpers';
+import { ChecklistItem } from '@/components/docs/checklist-item';
+import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
 
 # Workflow & Publishing Checklist
+
+<ChecklistProgressWrapper pageTitle="Workflow & Publishing" />
 
 Content workflow features including drafts, previews, scheduling, and collaboration tools.
 
@@ -12,156 +16,156 @@ Content workflow features including drafts, previews, scheduling, and collaborat
 ## Content States & Publishing <Badge variant="default">Essential</Badge>
 
 ### Basic Content States
-- [ ] **Draft state** for work-in-progress content
-- [ ] **Published state** for live, public content
-- [ ] **Unpublished/archived** state for removed content
-- [ ] **Clear visual indicators** for each content state
-- [ ] **State transitions** are easy to understand and execute
-- [ ] **Bulk publishing** operations for multiple items
+<ChecklistItem title="Draft state">for work-in-progress content</ChecklistItem>
+<ChecklistItem title="Published state">for live, public content</ChecklistItem>
+<ChecklistItem title="Unpublished/archived state">for removed content</ChecklistItem>
+<ChecklistItem title="Clear visual indicators">for each content state</ChecklistItem>
+<ChecklistItem title="State transitions">are easy to understand and execute</ChecklistItem>
+<ChecklistItem title="Bulk publishing">operations for multiple items</ChecklistItem>
 
 ### Publishing Controls
-- [ ] **One-click publishing** for simple workflows
-- [ ] **Publish immediately** vs. **save as draft** options
-- [ ] **Unpublish** functionality to remove content from public view
-- [ ] **Re-publish** updated content with a single action
-- [ ] **Publishing history** to track when content was published
-- [ ] **Publication confirmation** messages
+<ChecklistItem title="One-click publishing">for simple workflows</ChecklistItem>
+<ChecklistItem title="Publish immediately vs. save as draft">options</ChecklistItem>
+<ChecklistItem title="Unpublish functionality">to remove content from public view</ChecklistItem>
+<ChecklistItem title="Re-publish updated content">with a single action</ChecklistItem>
+<ChecklistItem title="Publishing history">to track when content was published</ChecklistItem>
+<ChecklistItem title="Publication confirmation">messages</ChecklistItem>
 
 ## Content Scheduling <Badge variant="warning">Important</Badge>
 
 ### Scheduled Publishing
-- [ ] **Schedule content** for future publication
-- [ ] **Date and time picker** for scheduling
-- [ ] **Timezone support** for global teams
-- [ ] **Scheduled content** queue and management
-- [ ] **Automatic publishing** at scheduled times
-- [ ] **Scheduling conflicts** detection and resolution
-- [ ] **Edit scheduled** content before it goes live
+<ChecklistItem title="Schedule content">for future publication</ChecklistItem>
+<ChecklistItem title="Date and time picker">for scheduling</ChecklistItem>
+<ChecklistItem title="Timezone support">for global teams</ChecklistItem>
+<ChecklistItem title="Scheduled content">queue and management</ChecklistItem>
+<ChecklistItem title="Automatic publishing">at scheduled times</ChecklistItem>
+<ChecklistItem title="Scheduling conflicts">detection and resolution</ChecklistItem>
+<ChecklistItem title="Edit scheduled">content before it goes live</ChecklistItem>
 
 ### Publishing Calendar
-- [ ] **Calendar view** of scheduled and published content
-- [ ] **Drag and drop** rescheduling
-- [ ] **Content pipeline** visualization
-- [ ] **Publishing deadlines** and reminders
-- [ ] **Recurring content** scheduling (daily, weekly, monthly)
-- [ ] **Holiday and blackout** date management
+<ChecklistItem title="Calendar view">of scheduled and published content</ChecklistItem>
+<ChecklistItem title="Drag and drop">rescheduling</ChecklistItem>
+<ChecklistItem title="Content pipeline">visualization</ChecklistItem>
+<ChecklistItem title="Publishing deadlines">and reminders</ChecklistItem>
+<ChecklistItem title="Recurring content">scheduling (daily, weekly, monthly)</ChecklistItem>
+<ChecklistItem title="Holiday and blackout">date management</ChecklistItem>
 
 ## Preview & Review <Badge variant="default">Essential</Badge>
 
 ### Content Preview
-- [ ] **Live preview** while editing
-- [ ] **Preview in context** (how content appears on the actual site)
-- [ ] **Mobile preview** for responsive content
-- [ ] **Preview URLs** for sharing with stakeholders
-- [ ] **Preview different** content states and versions
-- [ ] **Print preview** for printable content
+<ChecklistItem title="Live preview">while editing</ChecklistItem>
+<ChecklistItem title="Preview in context">(how content appears on the actual site)</ChecklistItem>
+<ChecklistItem title="Mobile preview">for responsive content</ChecklistItem>
+<ChecklistItem title="Preview URLs">for sharing with stakeholders</ChecklistItem>
+<ChecklistItem title="Preview different">content states and versions</ChecklistItem>
+<ChecklistItem title="Print preview">for printable content</ChecklistItem>
 
 ### Review Process
-- [ ] **Preview before publishing** requirement
-- [ ] **Side-by-side comparison** of edited vs. published content
-- [ ] **Preview expiration** for security (temporary preview links)
-- [ ] **Preview customization** for different audiences or contexts
-- [ ] **Device-specific previews** (desktop, tablet, mobile)
+<ChecklistItem title="Preview before publishing">requirement</ChecklistItem>
+<ChecklistItem title="Side-by-side comparison">of edited vs. published content</ChecklistItem>
+<ChecklistItem title="Preview expiration">for security (temporary preview links)</ChecklistItem>
+<ChecklistItem title="Preview customization">for different audiences or contexts</ChecklistItem>
+<ChecklistItem title="Device-specific previews">(desktop, tablet, mobile)</ChecklistItem>
 
 ## Version Control <Badge variant="warning">Important</Badge>
 
 ### Content Versioning
-- [ ] **Automatic version** saving during editing
-- [ ] **Manual version** creation for significant milestones
-- [ ] **Version history** with timestamps and author information
-- [ ] **Version comparison** (diff view between versions)
-- [ ] **Restore previous** versions
-- [ ] **Version labeling** and notes
-- [ ] **Branch and merge** content versions (advanced)
+<ChecklistItem title="Automatic version">saving during editing</ChecklistItem>
+<ChecklistItem title="Manual version">creation for significant milestones</ChecklistItem>
+<ChecklistItem title="Version history">with timestamps and author information</ChecklistItem>
+<ChecklistItem title="Version comparison">(diff view between versions)</ChecklistItem>
+<ChecklistItem title="Restore previous">versions</ChecklistItem>
+<ChecklistItem title="Version labeling">and notes</ChecklistItem>
+<ChecklistItem title="Branch and merge">content versions (advanced)</ChecklistItem>
 
 ### Backup & Recovery
-- [ ] **Auto-save** functionality during editing
-- [ ] **Draft recovery** if browser crashes or connection is lost
-- [ ] **Content backup** before major changes
-- [ ] **Bulk version** management and cleanup
-- [ ] **Export content** versions for external backup
+<ChecklistItem title="Auto-save">functionality during editing</ChecklistItem>
+<ChecklistItem title="Draft recovery">if browser crashes or connection is lost</ChecklistItem>
+<ChecklistItem title="Content backup">before major changes</ChecklistItem>
+<ChecklistItem title="Bulk version">management and cleanup</ChecklistItem>
+<ChecklistItem title="Export content">versions for external backup</ChecklistItem>
 
 ## Collaboration Features <Badge variant="warning">Important</Badge>
 
 ### Team Coordination
-- [ ] **Multiple users** can work on the same content
-- [ ] **Real-time collaboration** (Google Docs style editing)
-- [ ] **Author assignment** for content pieces
-- [ ] **Content ownership** and permissions
-- [ ] **Activity feed** showing who did what and when
-- [ ] **User presence** indicators (who's currently editing)
+<ChecklistItem title="Multiple users">can work on the same content</ChecklistItem>
+<ChecklistItem title="Real-time collaboration">(Google Docs style editing)</ChecklistItem>
+<ChecklistItem title="Author assignment">for content pieces</ChecklistItem>
+<ChecklistItem title="Content ownership">and permissions</ChecklistItem>
+<ChecklistItem title="Activity feed">showing who did what and when</ChecklistItem>
+<ChecklistItem title="User presence">indicators (who's currently editing)</ChecklistItem>
 
 ### Communication Tools
-- [ ] **Comments and annotations** on content
-- [ ] **Internal notes** that don't appear in published content
-- [ ] **@mentions** to notify specific team members
-- [ ] **Discussion threads** on content pieces
-- [ ] **Email notifications** for important updates
-- [ ] **Slack/Teams integration** for workflow notifications
+<ChecklistItem title="Comments and annotations">on content</ChecklistItem>
+<ChecklistItem title="Internal notes">that don't appear in published content</ChecklistItem>
+<ChecklistItem title="@mentions">to notify specific team members</ChecklistItem>
+<ChecklistItem title="Discussion threads">on content pieces</ChecklistItem>
+<ChecklistItem title="Email notifications">for important updates</ChecklistItem>
+<ChecklistItem title="Slack/Teams integration">for workflow notifications</ChecklistItem>
 
 ## Approval Workflows <Badge variant="secondary">Nice to Have</Badge>
 
 ### Editorial Workflow
-- [ ] **Approval required** before publishing
-- [ ] **Multi-step approval** process (author → editor → publisher)
-- [ ] **Role-based permissions** for different workflow stages
-- [ ] **Approval notifications** and reminders
-- [ ] **Rejection with feedback** and revision requests
-- [ ] **Bypass approval** for urgent content or trusted authors
+<ChecklistItem title="Approval required">before publishing</ChecklistItem>
+<ChecklistItem title="Multi-step approval">process (author → editor → publisher)</ChecklistItem>
+<ChecklistItem title="Role-based permissions">for different workflow stages</ChecklistItem>
+<ChecklistItem title="Approval notifications">and reminders</ChecklistItem>
+<ChecklistItem title="Rejection with feedback">and revision requests</ChecklistItem>
+<ChecklistItem title="Bypass approval">for urgent content or trusted authors</ChecklistItem>
 
 ### Content Governance
-- [ ] **Editorial calendar** integration with approval workflow
-- [ ] **Content guidelines** and style guide enforcement
-- [ ] **Quality checklists** before approval
-- [ ] **Compliance review** for regulated industries
-- [ ] **Legal review** workflow for sensitive content
-- [ ] **Brand approval** for marketing materials
+<ChecklistItem title="Editorial calendar">integration with approval workflow</ChecklistItem>
+<ChecklistItem title="Content guidelines">and style guide enforcement</ChecklistItem>
+<ChecklistItem title="Quality checklists">before approval</ChecklistItem>
+<ChecklistItem title="Compliance review">for regulated industries</ChecklistItem>
+<ChecklistItem title="Legal review">workflow for sensitive content</ChecklistItem>
+<ChecklistItem title="Brand approval">for marketing materials</ChecklistItem>
 
 ## Notification System <Badge variant="warning">Important</Badge>
 
 ### User Notifications
-- [ ] **In-app notifications** for workflow updates
-- [ ] **Email notifications** for important events
-- [ ] **Push notifications** for mobile/desktop apps
-- [ ] **Notification preferences** (what to receive and how)
-- [ ] **Notification history** and archive
-- [ ] **Digest notifications** (daily/weekly summaries)
+<ChecklistItem title="In-app notifications">for workflow updates</ChecklistItem>
+<ChecklistItem title="Email notifications">for important events</ChecklistItem>
+<ChecklistItem title="Push notifications">for mobile/desktop apps</ChecklistItem>
+<ChecklistItem title="Notification preferences">(what to receive and how)</ChecklistItem>
+<ChecklistItem title="Notification history">and archive</ChecklistItem>
+<ChecklistItem title="Digest notifications">(daily/weekly summaries)</ChecklistItem>
 
 ### System Alerts
-- [ ] **Publishing failures** notifications
-- [ ] **Scheduled content** confirmations
-- [ ] **System maintenance** announcements
-- [ ] **Security alerts** for suspicious activity
-- [ ] **Backup completion** notifications
-- [ ] **Integration failures** alerts
+<ChecklistItem title="Publishing failures">notifications</ChecklistItem>
+<ChecklistItem title="Scheduled content">confirmations</ChecklistItem>
+<ChecklistItem title="System maintenance">announcements</ChecklistItem>
+<ChecklistItem title="Security alerts">for suspicious activity</ChecklistItem>
+<ChecklistItem title="Backup completion">notifications</ChecklistItem>
+<ChecklistItem title="Integration failures">alerts</ChecklistItem>
 
 ## Integration & Automation <Badge variant="secondary">Nice to Have</Badge>
 
 ### External Tool Integration
-- [ ] **Social media** publishing integration
-- [ ] **Email marketing** platform sync
-- [ ] **Analytics tracking** setup
-- [ ] **SEO tool** integration
-- [ ] **Translation service** workflow
-- [ ] **Asset management** system integration
+<ChecklistItem title="Social media">publishing integration</ChecklistItem>
+<ChecklistItem title="Email marketing">platform sync</ChecklistItem>
+<ChecklistItem title="Analytics tracking">setup</ChecklistItem>
+<ChecklistItem title="SEO tool">integration</ChecklistItem>
+<ChecklistItem title="Translation service">workflow</ChecklistItem>
+<ChecklistItem title="Asset management">system integration</ChecklistItem>
 
 ### Workflow Automation
-- [ ] **Automated workflows** based on triggers
-- [ ] **Content lifecycle** automation (archive old content)
-- [ ] **Social sharing** automation upon publishing
-- [ ] **Backup automation** on schedule
-- [ ] **Report generation** automation
-- [ ] **Notification automation** based on events
+<ChecklistItem title="Automated workflows">based on triggers</ChecklistItem>
+<ChecklistItem title="Content lifecycle">automation (archive old content)</ChecklistItem>
+<ChecklistItem title="Social sharing">automation upon publishing</ChecklistItem>
+<ChecklistItem title="Backup automation">on schedule</ChecklistItem>
+<ChecklistItem title="Report generation">automation</ChecklistItem>
+<ChecklistItem title="Notification automation">based on events</ChecklistItem>
 
 ## Content Organization <Badge variant="warning">Important</Badge>
 
 ### Content Categorization
-- [ ] **Tags and categories** for content organization
-- [ ] **Custom taxonomies** for specific content types
-- [ ] **Content series** and collections
-- [ ] **Related content** suggestions and linking
-- [ ] **Content templates** for consistent structure
-- [ ] **Content archiving** and lifecycle management
+<ChecklistItem title="Tags and categories">for content organization</ChecklistItem>
+<ChecklistItem title="Custom taxonomies">for specific content types</ChecklistItem>
+<ChecklistItem title="Content series">and collections</ChecklistItem>
+<ChecklistItem title="Related content">suggestions and linking</ChecklistItem>
+<ChecklistItem title="Content templates">for consistent structure</ChecklistItem>
+<ChecklistItem title="Content archiving">and lifecycle management</ChecklistItem>
 
 ### Search & Discovery
 - [ ] **Advanced search** within the CMS

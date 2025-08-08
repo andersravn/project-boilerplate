@@ -1,7 +1,11 @@
 import { Badge } from '@/components/docs/ui-helpers';
 import { Alert } from '@/components/docs/ui-helpers';
+import { ChecklistItem } from '@/components/docs/checklist-item';
+import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
 
 # <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Optimization Checklist</span>
+
+<ChecklistProgressWrapper pageTitle="Optimization" />
 
 <p className="text-xl font-medium text-muted-foreground mb-8">Fine-tune your application for maximum efficiency, SEO performance, resource utilization, and overall user experience.</p>
 
@@ -12,226 +16,226 @@ import { Alert } from '@/components/docs/ui-helpers';
 ## <span className="text-2xl font-semibold text-purple-800 dark:text-purple-200">SEO Optimization</span> <Badge variant="default">Essential</Badge>
 
 ### <span className="text-lg font-medium text-purple-700 dark:text-purple-300">On-Page SEO</span>
-- [ ] **Title tags** optimized (50-60 characters, unique per page)
-- [ ] **Meta descriptions** compelling and under 160 characters
-- [ ] **H1 tags** present and descriptive on every page
-- [ ] **URL structure** clean and descriptive
-- [ ] **Internal linking** strategy implemented
-- [ ] **Image alt text** descriptive and keyword-relevant
-- [ ] **Content quality** high and regularly updated
+<ChecklistItem title="Title tags optimized">(50-60 characters, unique per page)</ChecklistItem>
+<ChecklistItem title="Meta descriptions">compelling and under 160 characters</ChecklistItem>
+<ChecklistItem title="H1 tags present">and descriptive on every page</ChecklistItem>
+<ChecklistItem title="URL structure">clean and descriptive</ChecklistItem>
+<ChecklistItem title="Internal linking strategy">implemented</ChecklistItem>
+<ChecklistItem title="Image alt text">descriptive and keyword-relevant</ChecklistItem>
+<ChecklistItem title="Content quality">high and regularly updated</ChecklistItem>
 
 ### Technical SEO
-- [ ] **XML sitemap** generated and submitted
-- [ ] **Robots.txt** properly configured
-- [ ] **Canonical URLs** set to prevent duplicate content
-- [ ] **Schema markup** implemented for rich snippets
-- [ ] **Open Graph** tags for social media sharing
-- [ ] **Twitter Cards** meta tags configured
-- [ ] **SSL certificate** installed (HTTPS everywhere)
+<ChecklistItem title="XML sitemap">generated and submitted</ChecklistItem>
+<ChecklistItem title="Robots.txt">properly configured</ChecklistItem>
+<ChecklistItem title="Canonical URLs">set to prevent duplicate content</ChecklistItem>
+<ChecklistItem title="Schema markup">implemented for rich snippets</ChecklistItem>
+<ChecklistItem title="Open Graph">tags for social media sharing</ChecklistItem>
+<ChecklistItem title="Twitter Cards">meta tags configured</ChecklistItem>
+<ChecklistItem title="SSL certificate">installed (HTTPS everywhere)</ChecklistItem>
 
 ### Site Structure
-- [ ] **URL hierarchy** logical and user-friendly
-- [ ] **Breadcrumb navigation** implemented
-- [ ] **Related content** suggestions
-- [ ] **Site search** functionality optimized
-- [ ] **404 error pages** helpful and branded
-- [ ] **301 redirects** for moved content
-- [ ] **Page hierarchy** clear and shallow (3-click rule)
+<ChecklistItem title="URL hierarchy">logical and user-friendly</ChecklistItem>
+<ChecklistItem title="Breadcrumb navigation">implemented</ChecklistItem>
+<ChecklistItem title="Related content">suggestions</ChecklistItem>
+<ChecklistItem title="Site search">functionality optimized</ChecklistItem>
+<ChecklistItem title="404 error pages">helpful and branded</ChecklistItem>
+<ChecklistItem title="301 redirects">for moved content</ChecklistItem>
+<ChecklistItem title="Page hierarchy">clear and shallow (3-click rule)</ChecklistItem>
 
 ## Code Optimization <Badge variant="warning">Important</Badge>
 
 ### HTML Optimization
-- [ ] **Semantic HTML5** elements used correctly
-- [ ] **Valid HTML** (W3C validator compliant)
-- [ ] **Minimal DOM depth** (avoid deep nesting)
-- [ ] **Clean markup** without unnecessary elements
-- [ ] **Accessibility attributes** properly implemented
-- [ ] **Microdata/JSON-LD** for structured data
-- [ ] **HTML compression** enabled on server
+<ChecklistItem title="Semantic HTML5">elements used correctly</ChecklistItem>
+<ChecklistItem title="Valid HTML">(W3C validator compliant)</ChecklistItem>
+<ChecklistItem title="Minimal DOM depth">(avoid deep nesting)</ChecklistItem>
+<ChecklistItem title="Clean markup">without unnecessary elements</ChecklistItem>
+<ChecklistItem title="Accessibility attributes">properly implemented</ChecklistItem>
+<ChecklistItem title="Microdata/JSON-LD">for structured data</ChecklistItem>
+<ChecklistItem title="HTML compression">enabled on server</ChecklistItem>
 
 ### CSS Optimization
-- [ ] **CSS methodology** (BEM, OOCSS, or Atomic CSS)
-- [ ] **Unused CSS** removed (PurgeCSS or similar)
-- [ ] **CSS specificity** kept low and manageable
-- [ ] **CSS custom properties** for theming
-- [ ] **Mobile-first** responsive design
-- [ ] **CSS containment** for performance isolation
-- [ ] **Critical CSS** identified and inlined
+<ChecklistItem title="CSS methodology">(BEM, OOCSS, or Atomic CSS)</ChecklistItem>
+<ChecklistItem title="Unused CSS">removed (PurgeCSS or similar)</ChecklistItem>
+<ChecklistItem title="CSS specificity">kept low and manageable</ChecklistItem>
+<ChecklistItem title="CSS custom properties">for theming</ChecklistItem>
+<ChecklistItem title="Mobile-first">responsive design</ChecklistItem>
+<ChecklistItem title="CSS containment">for performance isolation</ChecklistItem>
+<ChecklistItem title="Critical CSS">identified and inlined</ChecklistItem>
 
 ### JavaScript Optimization
-- [ ] **Modern JavaScript** (ES6+) with appropriate polyfills
-- [ ] **Functional programming** patterns where appropriate
-- [ ] **Error boundaries** to prevent app crashes
-- [ ] **Code comments** and documentation
-- [ ] **TypeScript** for type safety and better DX
-- [ ] **Linting rules** enforced (ESLint, Prettier)
-- [ ] **Dead code elimination** in build process
+<ChecklistItem title="Modern JavaScript">(ES6+) with appropriate polyfills</ChecklistItem>
+<ChecklistItem title="Functional programming">patterns where appropriate</ChecklistItem>
+<ChecklistItem title="Error boundaries">to prevent app crashes</ChecklistItem>
+<ChecklistItem title="Code comments">and documentation</ChecklistItem>
+<ChecklistItem title="TypeScript">for type safety and better DX</ChecklistItem>
+<ChecklistItem title="Linting rules">enforced (ESLint, Prettier)</ChecklistItem>
+<ChecklistItem title="Dead code elimination">in build process</ChecklistItem>
 
 ## Build & Deployment Optimization <Badge variant="warning">Important</Badge>
 
 ### Build Process
-- [ ] **Build optimization** for production
-- [ ] **Environment-specific** configurations
-- [ ] **Source maps** for debugging (excluded from production)
-- [ ] **Bundle analysis** and size monitoring
-- [ ] **Automated testing** in build pipeline
-- [ ] **Security scanning** in CI/CD
-- [ ] **Dependency vulnerability** checks
+<ChecklistItem title="Build optimization">for production</ChecklistItem>
+<ChecklistItem title="Environment-specific">configurations</ChecklistItem>
+<ChecklistItem title="Source maps">for debugging (excluded from production)</ChecklistItem>
+<ChecklistItem title="Bundle analysis">and size monitoring</ChecklistItem>
+<ChecklistItem title="Automated testing">in build pipeline</ChecklistItem>
+<ChecklistItem title="Security scanning">in CI/CD</ChecklistItem>
+<ChecklistItem title="Dependency vulnerability">checks</ChecklistItem>
 
 ### Asset Pipeline
-- [ ] **Asset versioning** for cache busting
-- [ ] **File naming conventions** for assets
-- [ ] **Asset compression** (Gzip/Brotli)
-- [ ] **Image optimization** pipeline
-- [ ] **Font optimization** and subsetting
-- [ ] **SVG optimization** and sprites
-- [ ] **Critical resource** identification and prioritization
+<ChecklistItem title="Asset versioning">for cache busting</ChecklistItem>
+<ChecklistItem title="File naming conventions">for assets</ChecklistItem>
+<ChecklistItem title="Asset compression">(Gzip/Brotli)</ChecklistItem>
+<ChecklistItem title="Image optimization">pipeline</ChecklistItem>
+<ChecklistItem title="Font optimization">and subsetting</ChecklistItem>
+<ChecklistItem title="SVG optimization">and sprites</ChecklistItem>
+<ChecklistItem title="Critical resource">identification and prioritization</ChecklistItem>
 
 ### Deployment Strategy
-- [ ] **Blue-green deployment** or similar zero-downtime strategy
-- [ ] **Rollback mechanism** for failed deployments
-- [ ] **Environment parity** (dev/staging/production)
-- [ ] **Health checks** and monitoring
-- [ ] **Content delivery network** (CDN) implementation
-- [ ] **Database migrations** handled safely
-- [ ] **Feature flags** for safe rollouts
+<ChecklistItem title="Blue-green deployment">or similar zero-downtime strategy</ChecklistItem>
+<ChecklistItem title="Rollback mechanism">for failed deployments</ChecklistItem>
+<ChecklistItem title="Environment parity">(dev/staging/production)</ChecklistItem>
+<ChecklistItem title="Health checks">and monitoring</ChecklistItem>
+<ChecklistItem title="Content delivery network">(CDN) implementation</ChecklistItem>
+<ChecklistItem title="Database migrations">handled safely</ChecklistItem>
+<ChecklistItem title="Feature flags">for safe rollouts</ChecklistItem>
 
 ## Database & API Optimization <Badge variant="warning">Important</Badge>
 
 ### Database Performance
-- [ ] **Database indexing** strategy optimized
-- [ ] **Query optimization** and N+1 problem prevention
-- [ ] **Database connection** pooling
-- [ ] **Caching layer** (Redis, Memcached) implemented
-- [ ] **Database partitioning** for large datasets
-- [ ] **Read replicas** for read-heavy applications
-- [ ] **Database monitoring** and slow query identification
+<ChecklistItem title="Database indexing">strategy optimized</ChecklistItem>
+<ChecklistItem title="Query optimization">and N+1 problem prevention</ChecklistItem>
+<ChecklistItem title="Database connection">pooling</ChecklistItem>
+<ChecklistItem title="Caching layer">(Redis, Memcached) implemented</ChecklistItem>
+<ChecklistItem title="Database partitioning">for large datasets</ChecklistItem>
+<ChecklistItem title="Read replicas">for read-heavy applications</ChecklistItem>
+<ChecklistItem title="Database monitoring">and slow query identification</ChecklistItem>
 
 ### API Design
-- [ ] **RESTful API** design principles followed
-- [ ] **GraphQL** for flexible data fetching (if applicable)
-- [ ] **API versioning** strategy implemented
-- [ ] **Rate limiting** to prevent abuse
-- [ ] **API documentation** (OpenAPI/Swagger)
-- [ ] **Error handling** consistent and informative
-- [ ] **Pagination** for large datasets
+<ChecklistItem title="RESTful API">design principles followed</ChecklistItem>
+<ChecklistItem title="GraphQL">for flexible data fetching (if applicable)</ChecklistItem>
+<ChecklistItem title="API versioning">strategy implemented</ChecklistItem>
+<ChecklistItem title="Rate limiting">to prevent abuse</ChecklistItem>
+<ChecklistItem title="API documentation">(OpenAPI/Swagger)</ChecklistItem>
+<ChecklistItem title="Error handling">consistent and informative</ChecklistItem>
+<ChecklistItem title="Pagination">for large datasets</ChecklistItem>
 
 ### Data Management
-- [ ] **Data validation** on both client and server
-- [ ] **Data serialization** optimized
-- [ ] **Background job** processing for heavy tasks
-- [ ] **Data compression** for large payloads
-- [ ] **API response** caching strategies
-- [ ] **Real-time updates** (WebSockets, SSE) where needed
-- [ ] **Data backup** and recovery procedures
+<ChecklistItem title="Data validation">on both client and server</ChecklistItem>
+<ChecklistItem title="Data serialization">optimized</ChecklistItem>
+<ChecklistItem title="Background job">processing for heavy tasks</ChecklistItem>
+<ChecklistItem title="Data compression">for large payloads</ChecklistItem>
+<ChecklistItem title="API response">caching strategies</ChecklistItem>
+<ChecklistItem title="Real-time updates">(WebSockets, SSE) where needed</ChecklistItem>
+<ChecklistItem title="Data backup">and recovery procedures</ChecklistItem>
 
 ## Security Optimization <Badge variant="default">Essential</Badge>
 
 ### Frontend Security
-- [ ] **Content Security Policy** (CSP) implemented
-- [ ] **XSS protection** measures in place
-- [ ] **CSRF tokens** for form submissions
-- [ ] **Input sanitization** and validation
-- [ ] **Secure authentication** implementation
-- [ ] **Session management** secure and optimized
-- [ ] **Third-party dependencies** security audited
+<ChecklistItem title="Content Security Policy">(CSP) implemented</ChecklistItem>
+<ChecklistItem title="XSS protection">measures in place</ChecklistItem>
+<ChecklistItem title="CSRF tokens">for form submissions</ChecklistItem>
+<ChecklistItem title="Input sanitization">and validation</ChecklistItem>
+<ChecklistItem title="Secure authentication">implementation</ChecklistItem>
+<ChecklistItem title="Session management">secure and optimized</ChecklistItem>
+<ChecklistItem title="Third-party dependencies">security audited</ChecklistItem>
 
 ### Server Security
-- [ ] **HTTPS enforcement** with HSTS headers
-- [ ] **Security headers** properly configured
-- [ ] **API authentication** and authorization
-- [ ] **SQL injection** prevention
-- [ ] **File upload** security measures
-- [ ] **Environment variables** for sensitive data
-- [ ] **Regular security** updates and patches
+<ChecklistItem title="HTTPS enforcement">with HSTS headers</ChecklistItem>
+<ChecklistItem title="Security headers">properly configured</ChecklistItem>
+<ChecklistItem title="API authentication">and authorization</ChecklistItem>
+<ChecklistItem title="SQL injection">prevention</ChecklistItem>
+<ChecklistItem title="File upload">security measures</ChecklistItem>
+<ChecklistItem title="Environment variables">for sensitive data</ChecklistItem>
+<ChecklistItem title="Regular security">updates and patches</ChecklistItem>
 
 ## User Experience Optimization <Badge variant="warning">Important</Badge>
 
 ### Navigation & Usability
-- [ ] **Clear navigation** structure and labeling
-- [ ] **Search functionality** with autocomplete/suggestions
-- [ ] **Filter and sort** options for content
-- [ ] **Breadcrumb trails** for deep navigation
-- [ ] **Related content** recommendations
-- [ ] **User onboarding** flow optimized
-- [ ] **Error messages** helpful and actionable
+<ChecklistItem title="Clear navigation">structure and labeling</ChecklistItem>
+<ChecklistItem title="Search functionality">with autocomplete/suggestions</ChecklistItem>
+<ChecklistItem title="Filter and sort">options for content</ChecklistItem>
+<ChecklistItem title="Breadcrumb trails">for deep navigation</ChecklistItem>
+<ChecklistItem title="Related content">recommendations</ChecklistItem>
+<ChecklistItem title="User onboarding">flow optimized</ChecklistItem>
+<ChecklistItem title="Error messages">helpful and actionable</ChecklistItem>
 
 ### Content Strategy
-- [ ] **Content hierarchy** clear and logical
-- [ ] **Reading level** appropriate for audience
-- [ ] **Content freshness** maintained
-- [ ] **Content personalization** based on user behavior
-- [ ] **A/B testing** for content optimization
-- [ ] **Content analytics** tracking and optimization
-- [ ] **Content accessibility** beyond basic requirements
+<ChecklistItem title="Content hierarchy">clear and logical</ChecklistItem>
+<ChecklistItem title="Reading level">appropriate for audience</ChecklistItem>
+<ChecklistItem title="Content freshness">maintained</ChecklistItem>
+<ChecklistItem title="Content personalization">based on user behavior</ChecklistItem>
+<ChecklistItem title="A/B testing">for content optimization</ChecklistItem>
+<ChecklistItem title="Content analytics">tracking and optimization</ChecklistItem>
+<ChecklistItem title="Content accessibility">beyond basic requirements</ChecklistItem>
 
 ### Conversion Optimization
-- [ ] **Call-to-action** buttons optimized
-- [ ] **Form optimization** (minimal fields, clear labels)
-- [ ] **Trust signals** (testimonials, security badges)
-- [ ] **Social proof** elements included
-- [ ] **Page load speed** optimized for conversions
-- [ ] **Mobile conversion** path optimized
-- [ ] **Abandoned cart** recovery (e-commerce)
+<ChecklistItem title="Call-to-action">buttons optimized</ChecklistItem>
+<ChecklistItem title="Form optimization">(minimal fields, clear labels)</ChecklistItem>
+<ChecklistItem title="Trust signals">(testimonials, security badges)</ChecklistItem>
+<ChecklistItem title="Social proof">elements included</ChecklistItem>
+<ChecklistItem title="Page load speed">optimized for conversions</ChecklistItem>
+<ChecklistItem title="Mobile conversion">path optimized</ChecklistItem>
+<ChecklistItem title="Abandoned cart">recovery (e-commerce)</ChecklistItem>
 
 ## Analytics & Monitoring <Badge variant="warning">Important</Badge>
 
 ### Data Collection
-- [ ] **Google Analytics 4** or similar implemented
-- [ ] **Custom events** tracking for key actions
-- [ ] **User journey** mapping and analysis
-- [ ] **Conversion tracking** set up
-- [ ] **A/B testing** platform integrated
-- [ ] **Heat mapping** tools (Hotjar, Crazy Egg)
-- [ ] **User feedback** collection mechanisms
+<ChecklistItem title="Google Analytics 4">or similar implemented</ChecklistItem>
+<ChecklistItem title="Custom events">tracking for key actions</ChecklistItem>
+<ChecklistItem title="User journey">mapping and analysis</ChecklistItem>
+<ChecklistItem title="Conversion tracking">set up</ChecklistItem>
+<ChecklistItem title="A/B testing">platform integrated</ChecklistItem>
+<ChecklistItem title="Heat mapping">tools (Hotjar, Crazy Egg)</ChecklistItem>
+<ChecklistItem title="User feedback">collection mechanisms</ChecklistItem>
 
 ### Performance Monitoring
-- [ ] **Real User Monitoring** (RUM) implemented
-- [ ] **Error tracking** (Sentry, Bugsnag) configured
-- [ ] **Uptime monitoring** alerts set up
-- [ ] **Performance budgets** monitored
-- [ ] **Core Web Vitals** tracking
-- [ ] **Business metrics** tied to technical metrics
-- [ ] **Custom dashboards** for key stakeholders
+<ChecklistItem title="Real User Monitoring">(RUM) implemented</ChecklistItem>
+<ChecklistItem title="Error tracking">(Sentry, Bugsnag) configured</ChecklistItem>
+<ChecklistItem title="Uptime monitoring">alerts set up</ChecklistItem>
+<ChecklistItem title="Performance budgets">monitored</ChecklistItem>
+<ChecklistItem title="Core Web Vitals">tracking</ChecklistItem>
+<ChecklistItem title="Business metrics">tied to technical metrics</ChecklistItem>
+<ChecklistItem title="Custom dashboards">for key stakeholders</ChecklistItem>
 
 ## Progressive Enhancement <Badge variant="secondary">Nice to Have</Badge>
 
 ### Modern Web Features
-- [ ] **Progressive Web App** (PWA) features
-- [ ] **Service Worker** for offline functionality
-- [ ] **Push notifications** for engagement
-- [ ] **Background sync** for offline actions
-- [ ] **Web App Manifest** for installability
-- [ ] **Native device features** integration (camera, GPS)
-- [ ] **Dark mode** support
+<ChecklistItem title="Progressive Web App">(PWA) features</ChecklistItem>
+<ChecklistItem title="Service Worker">for offline functionality</ChecklistItem>
+<ChecklistItem title="Push notifications">for engagement</ChecklistItem>
+<ChecklistItem title="Background sync">for offline actions</ChecklistItem>
+<ChecklistItem title="Web App Manifest">for installability</ChecklistItem>
+<ChecklistItem title="Native device features">integration (camera, GPS)</ChecklistItem>
+<ChecklistItem title="Dark mode">support</ChecklistItem>
 
 ### Advanced UX Features
-- [ ] **Skeleton screens** for loading states
-- [ ] **Optimistic UI** updates
-- [ ] **Infinite scrolling** or pagination optimization
-- [ ] **Keyboard shortcuts** for power users
-- [ ] **Gesture support** for mobile devices
-- [ ] **Voice search** or voice commands
-- [ ] **Accessibility beyond** WCAG AA compliance
+<ChecklistItem title="Skeleton screens">for loading states</ChecklistItem>
+<ChecklistItem title="Optimistic UI">updates</ChecklistItem>
+<ChecklistItem title="Infinite scrolling">or pagination optimization</ChecklistItem>
+<ChecklistItem title="Keyboard shortcuts">for power users</ChecklistItem>
+<ChecklistItem title="Gesture support">for mobile devices</ChecklistItem>
+<ChecklistItem title="Voice search">or voice commands</ChecklistItem>
+<ChecklistItem title="Accessibility beyond">WCAG AA compliance</ChecklistItem>
 
 ## Multi-language & Internationalization <Badge variant="secondary">Nice to Have</Badge>
 
 ### Internationalization (i18n)
-- [ ] **Language detection** and switching
-- [ ] **Right-to-left** (RTL) language support
-- [ ] **Date and time** localization
-- [ ] **Currency and number** formatting
-- [ ] **Content translation** management
-- [ ] **SEO optimization** for multiple languages
-- [ ] **Cultural adaptation** beyond language
+<ChecklistItem title="Language detection">and switching</ChecklistItem>
+<ChecklistItem title="Right-to-left">(RTL) language support</ChecklistItem>
+<ChecklistItem title="Date and time">localization</ChecklistItem>
+<ChecklistItem title="Currency and number">formatting</ChecklistItem>
+<ChecklistItem title="Content translation">management</ChecklistItem>
+<ChecklistItem title="SEO optimization">for multiple languages</ChecklistItem>
+<ChecklistItem title="Cultural adaptation">beyond language</ChecklistItem>
 
 ### Localization (l10n)
-- [ ] **Regional content** adaptation
-- [ ] **Local compliance** requirements met
-- [ ] **Local payment** methods supported
-- [ ] **Regional CDN** optimization
-- [ ] **Time zone** handling
-- [ ] **Local social media** platform integration
+<ChecklistItem title="Regional content">adaptation</ChecklistItem>
+<ChecklistItem title="Local compliance">requirements met</ChecklistItem>
+<ChecklistItem title="Local payment">methods supported</ChecklistItem>
+<ChecklistItem title="Regional CDN">optimization</ChecklistItem>
+<ChecklistItem title="Time zone">handling</ChecklistItem>
+<ChecklistItem title="Local social media">platform integration</ChecklistItem>
 
 ## Implementation Strategy
 
