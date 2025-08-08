@@ -3,20 +3,21 @@ import { Alert } from '@/components/docs/ui-helpers';
 import { CodeBlock } from '@/components/docs/documentation-components';
 import { ChecklistItem } from '@/components/docs/checklist-item';
 import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
 
 # <span className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Structured Data Checklist</span>
 
 <ChecklistProgressWrapper pageTitle="Structured Data" />
 
-<p className="text-xl font-medium text-muted-foreground mb-8">Implement Schema.org markup and structured data to enhance SEO, enable rich search results, and improve content discoverability.</p>
+<LeadText>Implement Schema.org markup and structured data to enhance SEO, enable rich search results, and improve content discoverability.</LeadText>
 
 <Alert title="Structured Data Benefits">
   Structured data helps search engines understand your content better, leading to rich snippets, enhanced search results, and improved click-through rates.
 </Alert>
 
-## <span className="text-2xl font-semibold text-cyan-800 dark:text-cyan-200">Basic Schema.org Implementation</span> <Badge variant="default">Essential</Badge>
+## Basic Schema.org Implementation <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-cyan-700 dark:text-cyan-300">Website & Organization Markup</span>
+### Website & Organization Markup
 <ChecklistItem title="Organization schema">with name, logo, contact information</ChecklistItem>
 <ChecklistItem title="Website schema">with site navigation elements</ChecklistItem>
 <ChecklistItem title="WebSite schema">with search action for site search</ChecklistItem>
@@ -53,6 +54,57 @@ import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-w
 <ChecklistItem title="SKU and GTIN">identifiers where applicable</ChecklistItem>
 <ChecklistItem title="ProductCategory">and product hierarchy</ChecklistItem>
 <ChecklistItem title="Merchant information">for e-commerce sites</ChecklistItem>
+
+<Alert title="Product Schema Example">
+Here's a simplified example showing how to dynamically choose between Offer and AggregateOffer based on pricing data:
+</Alert>
+
+<CodeBlock language="typescript">
+{`// Product schema with dynamic offer types
+const generateProductSchema = (productData, pricesData) => {
+  // Process images for structured data
+  const images = productData.images?.map(img => 
+    \`\${img.url}?format=webp&quality=75&width=1200&height=628\`
+  ) ?? [];
+
+  // Create offers based on pricing structure
+  const offers = pricesData?.length > 0
+    ? pricesData.map(price => {
+        const baseOffer = {
+          price: price.price ?? "0",
+          priceCurrency: "USD",
+          availability: "InStock",
+          itemCondition: "NewCondition",
+          seller: {
+            "@type": "Organization",
+            name: "Your Store Name"
+          }
+        };
+
+        // Use AggregateOffer for price ranges, Offer for fixed prices
+        return price.minPrice && price.maxPrice
+          ? { "@type": "AggregateOffer", ...baseOffer, 
+              lowPrice: price.minPrice, 
+              highPrice: price.maxPrice }
+          : { "@type": "Offer", ...baseOffer };
+      })
+    : undefined;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: productData.name,
+    description: productData.description,
+    image: images,
+    category: productData.category,
+    manufacturer: {
+      "@type": "Organization",
+      name: "Your Brand"
+    },
+    ...(offers && { offers })
+  };
+};`}
+</CodeBlock>
 
 ### Local Business
 <ChecklistItem title="LocalBusiness schema">for location-based businesses</ChecklistItem>

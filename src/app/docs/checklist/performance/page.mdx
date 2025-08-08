@@ -2,20 +2,21 @@ import { Badge } from '@/components/docs/ui-helpers';
 import { Alert } from '@/components/docs/ui-helpers';
 import { ChecklistItem } from '@/components/docs/checklist-item';
 import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
 
 # <span className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Performance Checklist</span>
 
 <ChecklistProgressWrapper pageTitle="Performance" />
 
-<p className="text-xl font-medium text-muted-foreground mb-8">Optimize loading times, responsiveness, and overall application performance for better user experience and Core Web Vitals.</p>
+<LeadText>Optimize loading times, responsiveness, and overall application performance for better user experience and Core Web Vitals.</LeadText>
 
 <Alert title="Performance Matters">
   Page speed directly impacts user engagement, conversion rates, and search rankings. Every 100ms delay in load time can reduce conversions by 7%.
 </Alert>
 
-## <span className="text-2xl font-semibold text-orange-800 dark:text-orange-200">Core Web Vitals</span> <Badge variant="default">Essential</Badge>
+## Core Web Vitals <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Largest Contentful Paint (LCP)</span>
+### Largest Contentful Paint (LCP)
 <ChecklistItem title="LCP under 2.5 seconds">for good user experience</ChecklistItem>
 <ChecklistItem title="Optimize largest element">(usually hero image or heading)</ChecklistItem>
 <ChecklistItem title="Preload critical resources">(fonts, hero images, above-fold CSS)</ChecklistItem>
@@ -24,7 +25,7 @@ import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-w
 <ChecklistItem title="Use responsive images">with srcset and sizes</ChecklistItem>
 <ChecklistItem title="Implement lazy loading">for below-fold images</ChecklistItem>
 
-### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">First Input Delay (FID) / Interaction to Next Paint (INP)</span>
+### First Input Delay (FID) / Interaction to Next Paint (INP)
 <ChecklistItem title="FID under 100ms">(INP under 200ms for good rating)</ChecklistItem>
 <ChecklistItem title="Minimize JavaScript">execution time</ChecklistItem>
 <ChecklistItem title="Code splitting">to reduce main thread blocking</ChecklistItem>
@@ -33,7 +34,7 @@ import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-w
 <ChecklistItem title="Defer non-critical JavaScript"></ChecklistItem>
 <ChecklistItem title="Optimize third-party scripts"></ChecklistItem>
 
-### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Cumulative Layout Shift (CLS)</span>
+### Cumulative Layout Shift (CLS)
 <ChecklistItem title="CLS under 0.1">for good user experience</ChecklistItem>
 <ChecklistItem title="Set size attributes">for images and videos</ChecklistItem>
 <ChecklistItem title="Reserve space">for dynamic content</ChecklistItem>
@@ -42,9 +43,9 @@ import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-w
 <ChecklistItem title="Preload critical fonts">and use font-display: swap</ChecklistItem>
 <ChecklistItem title="Minimize web font">layout shifts</ChecklistItem>
 
-## <span className="text-2xl font-semibold text-orange-800 dark:text-orange-200">Loading Performance</span> <Badge variant="default">Essential</Badge>
+## Loading Performance <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Critical Resource Optimization</span>
+### Critical Resource Optimization
 <ChecklistItem title="Critical CSS">inlined or preloaded</ChecklistItem>
 <ChecklistItem title="Eliminate render-blocking">CSS and JavaScript</ChecklistItem>
 <ChecklistItem title="Optimize critical path">length</ChecklistItem>

@@ -118,7 +118,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 {/* Main Content */}
                 <main className="flex-1">
                     <div className="container mx-auto px-8 py-8 max-w-4xl">
-                        <div className="max-w-none">
+                        <div className="max-w-none docs-content">
                             {children}
                         </div>
                     </div>

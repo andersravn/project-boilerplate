@@ -2,20 +2,21 @@ import { Badge } from '@/components/docs/ui-helpers';
 import { Alert } from '@/components/docs/ui-helpers';
 import { ChecklistItem } from '@/components/docs/checklist-item';
 import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
 
 # <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Optimization Checklist</span>
 
 <ChecklistProgressWrapper pageTitle="Optimization" />
 
-<p className="text-xl font-medium text-muted-foreground mb-8">Fine-tune your application for maximum efficiency, SEO performance, resource utilization, and overall user experience.</p>
+<LeadText>Fine-tune your application for maximum efficiency, SEO performance, resource utilization, and overall user experience.</LeadText>
 
 <Alert title="Optimization Impact">
   Optimization goes beyond basic performance—it's about creating the most efficient, discoverable, and user-friendly application possible.
 </Alert>
 
-## <span className="text-2xl font-semibold text-purple-800 dark:text-purple-200">SEO Optimization</span> <Badge variant="default">Essential</Badge>
+## SEO Optimization <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-purple-700 dark:text-purple-300">On-Page SEO</span>
+### On-Page SEO
 <ChecklistItem title="Title tags optimized">(50-60 characters, unique per page)</ChecklistItem>
 <ChecklistItem title="Meta descriptions">compelling and under 160 characters</ChecklistItem>
 <ChecklistItem title="H1 tags present">and descriptive on every page</ChecklistItem>

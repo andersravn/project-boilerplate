@@ -2,20 +2,21 @@ import { Badge } from '@/components/docs/ui-helpers';
 import { Alert } from '@/components/docs/ui-helpers';
 import { ChecklistItem } from '@/components/docs/checklist-item';
 import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
 
 # <span className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Accessibility Checklist</span>
 
 <ChecklistProgressWrapper pageTitle="Accessibility" />
 
-<p className="text-xl font-medium text-muted-foreground mb-8">Ensure your web application is usable by everyone, including people with disabilities, and meets WCAG 2.1 AA guidelines.</p>
+<LeadText>Ensure your web application is usable by everyone, including people with disabilities, and meets WCAG 2.1 AA guidelines.</LeadText>
 
 <Alert title="Accessibility is Essential">
   Accessibility is not just a legal requirement in many jurisdictions—it's a fundamental principle of inclusive design that makes your application better for everyone.
 </Alert>
 
-## <span className="text-2xl font-semibold text-green-800 dark:text-green-200">Semantic HTML & Structure</span> <Badge variant="default">Essential</Badge>
+## Semantic HTML & Structure <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-green-700 dark:text-green-300">Document Structure</span>
+### Document Structure
 <ChecklistItem title="Proper HTML5 semantic elements">(header, nav, main, section, article, aside, footer)</ChecklistItem>
 <ChecklistItem title="Single H1 per page">with logical heading hierarchy (H1 → H2 → H3)</ChecklistItem>
 <ChecklistItem title="Skip navigation links">to main content</ChecklistItem>
@@ -24,16 +25,16 @@ import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-w
 <ChecklistItem title="Language attribute">set on html element and changes declared</ChecklistItem>
 <ChecklistItem title="Reading order is logical">when CSS is disabled</ChecklistItem>
 
-### <span className="text-lg font-medium text-green-700 dark:text-green-300">Lists and Tables</span>
+### Lists and Tables
 <ChecklistItem title="Proper list markup">(ul, ol, dl) for grouped content</ChecklistItem>
 <ChecklistItem title="Table headers">(th) with scope attributes for data tables</ChecklistItem>
 <ChecklistItem title="Table captions">or aria-label for complex tables</ChecklistItem>
 <ChecklistItem title="Column/row headers">associated with data cells</ChecklistItem>
 <ChecklistItem title="Layout tables avoided">(use CSS Grid/Flexbox instead)</ChecklistItem>
 
-## <span className="text-2xl font-semibold text-green-800 dark:text-green-200">Keyboard Navigation</span> <Badge variant="default">Essential</Badge>
+## Keyboard Navigation <Badge variant="default">Essential</Badge>
 
-### <span className="text-lg font-medium text-green-700 dark:text-green-300">Focus Management</span>
+### Focus Management
 <ChecklistItem title="All interactive elements">accessible via keyboard</ChecklistItem>
 <ChecklistItem title="Visible focus indicators">with sufficient contrast (3:1 ratio)</ChecklistItem>
 <ChecklistItem title="Logical tab order">that follows visual flow</ChecklistItem>
