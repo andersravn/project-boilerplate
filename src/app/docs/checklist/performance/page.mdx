@@ -1,0 +1,243 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Performance Checklist</span>
+
+<p className="text-xl font-medium text-muted-foreground mb-8">Optimize loading times, responsiveness, and overall application performance for better user experience and Core Web Vitals.</p>
+
+<Alert title="Performance Matters">
+  Page speed directly impacts user engagement, conversion rates, and search rankings. Every 100ms delay in load time can reduce conversions by 7%.
+</Alert>
+
+## <span className="text-2xl font-semibold text-orange-800 dark:text-orange-200">Core Web Vitals</span> <Badge variant="default">Essential</Badge>
+
+### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Largest Contentful Paint (LCP)</span>
+- [ ] **LCP under 2.5 seconds** for good user experience
+- [ ] **Optimize largest element** (usually hero image or heading)
+- [ ] **Preload critical resources** (fonts, hero images, above-fold CSS)
+- [ ] **Optimize images** with proper formats and compression
+- [ ] **Minimize render-blocking** resources
+- [ ] **Use responsive images** with srcset and sizes
+- [ ] **Implement lazy loading** for below-fold images
+
+### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">First Input Delay (FID) / Interaction to Next Paint (INP)</span>
+- [ ] **FID under 100ms** (INP under 200ms for good rating)
+- [ ] **Minimize JavaScript** execution time
+- [ ] **Code splitting** to reduce main thread blocking
+- [ ] **Optimize event handlers** and avoid long tasks
+- [ ] **Use web workers** for heavy computations
+- [ ] **Defer non-critical JavaScript**
+- [ ] **Optimize third-party scripts**
+
+### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Cumulative Layout Shift (CLS)</span>
+- [ ] **CLS under 0.1** for good user experience
+- [ ] **Set size attributes** for images and videos
+- [ ] **Reserve space** for dynamic content
+- [ ] **Avoid injecting content** above existing content
+- [ ] **Use CSS aspect-ratio** for responsive media
+- [ ] **Preload critical fonts** and use font-display: swap
+- [ ] **Minimize web font** layout shifts
+
+## <span className="text-2xl font-semibold text-orange-800 dark:text-orange-200">Loading Performance</span> <Badge variant="default">Essential</Badge>
+
+### <span className="text-lg font-medium text-orange-700 dark:text-orange-300">Critical Resource Optimization</span>
+- [ ] **Critical CSS** inlined or preloaded
+- [ ] **Eliminate render-blocking** CSS and JavaScript
+- [ ] **Optimize critical path** length
+- [ ] **Preconnect to external** domains
+- [ ] **DNS prefetch** for third-party resources
+- [ ] **Resource hints** (preload, prefetch) implemented
+- [ ] **HTTP/2** or HTTP/3 enabled
+
+### Asset Optimization
+- [ ] **Image compression** (WebP, AVIF for modern browsers)
+- [ ] **Next-gen image formats** with fallbacks
+- [ ] **Responsive images** for different screen sizes
+- [ ] **Image dimensions** specified to prevent layout shift
+- [ ] **Icon fonts replaced** with SVG sprites or icon fonts
+- [ ] **CSS and JavaScript** minified and compressed
+- [ ] **Dead code elimination** implemented
+
+### Caching Strategy
+- [ ] **Browser caching** headers set appropriately
+- [ ] **CDN** implemented for static assets
+- [ ] **Service worker** for offline functionality and caching
+- [ ] **Application cache** strategy defined
+- [ ] **API response caching** where appropriate
+- [ ] **Static asset versioning** for cache busting
+- [ ] **Edge caching** for dynamic content where possible
+
+## JavaScript Performance <Badge variant="warning">Important</Badge>
+
+### Bundle Optimization
+- [ ] **JavaScript bundle size** under 170KB (compressed)
+- [ ] **Code splitting** by route and component
+- [ ] **Tree shaking** to remove unused code
+- [ ] **Dynamic imports** for non-critical features
+- [ ] **Webpack bundle analyzer** used to identify bloat
+- [ ] **Polyfills** only loaded when needed
+- [ ] **Third-party dependencies** audited for size
+
+### Runtime Performance
+- [ ] **Avoid long tasks** (over 50ms on main thread)
+- [ ] **Optimize rendering** performance
+- [ ] **Use requestAnimationFrame** for animations
+- [ ] **Debounce and throttle** expensive operations
+- [ ] **Virtual scrolling** for long lists
+- [ ] **Memoization** for expensive calculations
+- [ ] **Web workers** for CPU-intensive tasks
+
+### Framework-Specific Optimizations
+- [ ] **React**: useMemo, useCallback, React.lazy
+- [ ] **Vue**: v-memo, defineAsyncComponent, keep-alive
+- [ ] **Next.js**: Image optimization, automatic code splitting
+- [ ] **Angular**: OnPush change detection, lazy loading modules
+- [ ] **Component lazy loading** implemented
+- [ ] **Bundle splitting** by framework features
+
+## Network Performance <Badge variant="warning">Important</Badge>
+
+### HTTP Optimization
+- [ ] **HTTP/2** server push for critical resources
+- [ ] **Reduce HTTP requests** through bundling and sprites
+- [ ] **Optimize API calls** (batching, GraphQL)
+- [ ] **Implement request** caching and deduplication
+- [ ] **Use compression** (Gzip, Brotli) for text assets
+- [ ] **Minimize redirects** and optimize redirect chains
+- [ ] **Enable keep-alive** connections
+
+### Resource Loading
+- [ ] **Lazy load** images and videos
+- [ ] **Progressive image** loading (blur-up technique)
+- [ ] **Intersection Observer** for efficient lazy loading
+- [ ] **Preload critical resources** above the fold
+- [ ] **Prefetch resources** for likely next actions
+- [ ] **Background loading** for non-critical content
+- [ ] **Offline-first** strategy with service workers
+
+## Rendering Performance <Badge variant="warning">Important</Badge>
+
+### CSS Performance
+- [ ] **Critical CSS** inlined (under 14KB)
+- [ ] **CSS containment** for isolated components
+- [ ] **Avoid complex selectors** and deep nesting
+- [ ] **Use CSS transforms** instead of changing layout properties
+- [ ] **GPU acceleration** for animations (transform, opacity)
+- [ ] **CSS custom properties** instead of JavaScript for theming
+- [ ] **Remove unused CSS** with tools like PurgeCSS
+
+### Animation Performance
+- [ ] **60fps animations** using transform and opacity
+- [ ] **Avoid animating** layout properties (width, height, position)
+- [ ] **Use will-change** sparingly and remove after animation
+- [ ] **Optimize SVG animations** and use CSS animations when possible
+- [ ] **Reduce animation complexity** on lower-end devices
+- [ ] **Prefers-reduced-motion** media query respected
+- [ ] **Hardware acceleration** enabled for smooth animations
+
+## Memory & Resource Management <Badge variant="secondary">Nice to Have</Badge>
+
+### Memory Optimization
+- [ ] **Memory leaks** identified and fixed
+- [ ] **Event listeners** properly removed
+- [ ] **Large objects** cleaned up when not needed
+- [ ] **DOM nodes** removed from memory when no longer needed
+- [ ] **Image references** cleared for garbage collection
+- [ ] **WeakMap and WeakSet** used appropriately
+- [ ] **Memory usage** monitored in production
+
+### Resource Cleanup
+- [ ] **Timers and intervals** cleared properly
+- [ ] **WebSocket connections** closed appropriately
+- [ ] **API requests** cancelled when components unmount
+- [ ] **File handles** and streams closed
+- [ ] **Cache eviction** strategies implemented
+- [ ] **Background tasks** stopped when not needed
+
+## Mobile Performance <Badge variant="warning">Important</Badge>
+
+### Mobile-Specific Optimizations
+- [ ] **Touch delay** eliminated (300ms click delay)
+- [ ] **Viewport meta tag** optimized
+- [ ] **Mobile-specific** image sizes served
+- [ ] **Reduce battery usage** through efficient code
+- [ ] **Optimize for slower** CPUs and limited memory
+- [ ] **Network-aware** loading (slow 3G considerations)
+- [ ] **Progressive enhancement** for basic functionality
+
+### Responsive Performance
+- [ ] **Mobile-first** CSS loading
+- [ ] **Conditional loading** based on device capabilities
+- [ ] **Optimize touch interactions** and gestures
+- [ ] **Reduce data usage** on mobile networks
+- [ ] **Battery-efficient** animations and interactions
+- [ ] **Connection type** detection and adaptation
+
+## Monitoring & Measurement <Badge variant="warning">Important</Badge>
+
+### Performance Monitoring
+- [ ] **Real User Monitoring** (RUM) implemented
+- [ ] **Core Web Vitals** tracked in production
+- [ ] **Performance budgets** defined and monitored
+- [ ] **Lighthouse** CI integration for automated testing
+- [ ] **WebPageTest** for detailed performance analysis
+- [ ] **Speed Index** and other metrics tracked
+- [ ] **Performance regression** alerts set up
+
+### Analytics Integration
+- [ ] **Page load times** tracked by user segment
+- [ ] **Performance impact** on business metrics measured
+- [ ] **A/B testing** for performance optimizations
+- [ ] **Error tracking** for performance-related issues
+- [ ] **User experience** metrics correlated with performance
+- [ ] **Performance dashboards** for monitoring trends
+
+## Advanced Optimizations <Badge variant="secondary">Nice to Have</Badge>
+
+### Modern Web Technologies
+- [ ] **Service Workers** for advanced caching strategies
+- [ ] **Web Assembly** for performance-critical operations
+- [ ] **Edge-side rendering** for dynamic content
+- [ ] **Streaming SSR** for faster perceived performance
+- [ ] **Progressive Web App** features implemented
+- [ ] **Background sync** for offline functionality
+- [ ] **Push notifications** for re-engagement
+
+### Performance Testing
+- [ ] **Load testing** under various conditions
+- [ ] **Stress testing** for high traffic scenarios
+- [ ] **Performance testing** in CI/CD pipeline
+- [ ] **Device testing** on low-end devices
+- [ ] **Network testing** on slow connections
+- [ ] **Performance profiling** tools integrated
+
+## Implementation Strategy
+
+<Alert title="Performance Budget">
+  Set performance budgets for different metrics and fail builds that exceed them. This prevents performance regressions over time.
+</Alert>
+
+### Development Process
+
+1. **Phase 1**: Core Web Vitals optimization, image optimization, basic caching
+2. **Phase 2**: JavaScript optimization, advanced caching, monitoring setup
+3. **Phase 3**: Advanced techniques, mobile optimization, performance culture
+
+### Performance Culture
+
+- **Performance Reviews**: Include performance impact in code reviews
+- **Performance Testing**: Automate performance testing in CI/CD
+- **Team Training**: Educate team on performance best practices
+- **Performance Champions**: Designate team members as performance advocates
+- **Regular Audits**: Conduct quarterly performance audits
+
+### Tools & Resources
+
+- **Testing Tools**: Lighthouse, WebPageTest, Chrome DevTools
+- **Monitoring**: New Relic, DataDog, Google Analytics 4
+- **Build Tools**: Webpack Bundle Analyzer, source-map-explorer
+- **Image Optimization**: Squoosh, ImageOptim, TinyPNG
+
+<Alert variant="warning" title="Performance vs Features">
+  Balance feature richness with performance. Sometimes simpler solutions perform better and provide superior user experience.
+</Alert>

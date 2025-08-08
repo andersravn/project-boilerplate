@@ -1,0 +1,214 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Accessibility Checklist</span>
+
+<p className="text-xl font-medium text-muted-foreground mb-8">Ensure your web application is usable by everyone, including people with disabilities, and meets WCAG 2.1 AA guidelines.</p>
+
+<Alert title="Accessibility is Essential">
+  Accessibility is not just a legal requirement in many jurisdictions—it's a fundamental principle of inclusive design that makes your application better for everyone.
+</Alert>
+
+## <span className="text-2xl font-semibold text-green-800 dark:text-green-200">Semantic HTML & Structure</span> <Badge variant="default">Essential</Badge>
+
+### <span className="text-lg font-medium text-green-700 dark:text-green-300">Document Structure</span>
+- [ ] **Proper HTML5** semantic elements (header, nav, main, section, article, aside, footer)
+- [ ] **Single H1** per page with logical heading hierarchy (H1 → H2 → H3)
+- [ ] **Skip navigation** links to main content
+- [ ] **Landmark roles** where semantic HTML isn't sufficient
+- [ ] **Page title** describes the page content and updates on navigation
+- [ ] **Language attribute** set on html element and changes declared
+- [ ] **Reading order** is logical when CSS is disabled
+
+### <span className="text-lg font-medium text-green-700 dark:text-green-300">Lists and Tables</span>
+- [ ] **Proper list markup** (ul, ol, dl) for grouped content
+- [ ] **Table headers** (th) with scope attributes for data tables
+- [ ] **Table captions** or aria-label for complex tables
+- [ ] **Column/row headers** associated with data cells
+- [ ] **Layout tables avoided** (use CSS Grid/Flexbox instead)
+
+## <span className="text-2xl font-semibold text-green-800 dark:text-green-200">Keyboard Navigation</span> <Badge variant="default">Essential</Badge>
+
+### <span className="text-lg font-medium text-green-700 dark:text-green-300">Focus Management</span>
+- [ ] **All interactive elements** accessible via keyboard
+- [ ] **Visible focus indicators** with sufficient contrast (3:1 ratio)
+- [ ] **Logical tab order** that follows visual flow
+- [ ] **Focus trapping** in modals and overlays
+- [ ] **Focus restoration** when closing modals/dropdowns
+- [ ] **Custom focus styles** that are clearly visible
+- [ ] **No keyboard traps** (users can always tab out)
+
+### Keyboard Shortcuts
+- [ ] **Arrow key navigation** for menus and component collections
+- [ ] **Enter/Space** activation for buttons and links
+- [ ] **Escape key** closes modals, dropdowns, and overlays
+- [ ] **Standard shortcuts** work (Ctrl+F for search, etc.)
+- [ ] **Custom shortcuts** documented and non-conflicting
+
+## Images & Media <Badge variant="default">Essential</Badge>
+
+### Alternative Text
+- [ ] **Meaningful alt text** for informative images
+- [ ] **Empty alt attribute** for decorative images
+- [ ] **Complex image descriptions** for charts, graphs, diagrams
+- [ ] **Image captions** supplement but don't replace alt text
+- [ ] **Alt text under 125 characters** when possible
+- [ ] **No "image of" or "picture of"** prefixes in alt text
+
+### Video & Audio
+- [ ] **Captions** for all video content
+- [ ] **Audio descriptions** for visual content in videos
+- [ ] **Transcripts** for audio-only content
+- [ ] **Auto-playing media** can be paused/stopped
+- [ ] **Video controls** are keyboard accessible
+- [ ] **No seizure-inducing** flashing content (3 flashes per second max)
+
+## Color & Contrast <Badge variant="default">Essential</Badge>
+
+### Color Usage
+- [ ] **Color contrast** meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text)
+- [ ] **Information not conveyed** by color alone
+- [ ] **Focus indicators** have 3:1 contrast ratio
+- [ ] **Interactive elements** have sufficient contrast in all states
+- [ ] **UI components** meet 3:1 contrast ratio requirement
+- [ ] **Color blindness** considerations (avoid red/green only combinations)
+
+### Visual Design
+- [ ] **Text can be enlarged** to 200% without horizontal scrolling
+- [ ] **Content reflows** properly at different zoom levels
+- [ ] **High contrast mode** supported
+- [ ] **Dark mode** considerations if applicable
+- [ ] **Sufficient spacing** between interactive elements (44px minimum)
+
+## Forms & Inputs <Badge variant="default">Essential</Badge>
+
+### Form Labels
+- [ ] **All inputs have labels** (visible labels or aria-label)
+- [ ] **Labels are associated** with inputs via for/id or wrapping
+- [ ] **Required fields** clearly marked
+- [ ] **Fieldsets and legends** for grouped form controls
+- [ ] **Input purposes** identified with autocomplete attributes
+- [ ] **Placeholder text** doesn't replace labels
+
+### Error Handling
+- [ ] **Error messages** clearly identify the problem
+- [ ] **Error messages** associated with inputs via aria-describedby
+- [ ] **Errors announced** to screen readers (aria-live regions)
+- [ ] **Inline validation** doesn't interfere with screen readers
+- [ ] **Success messages** also announced to assistive technology
+- [ ] **Form submission errors** clearly explained and actionable
+
+## Interactive Elements <Badge variant="default">Essential</Badge>
+
+### Buttons & Links
+- [ ] **Button vs link** semantics used correctly
+- [ ] **Button text** describes the action (not "click here")
+- [ ] **Link text** describes the destination or purpose
+- [ ] **Button states** (disabled, pressed) communicated to screen readers
+- [ ] **Icon buttons** have accessible names
+- [ ] **Toggle buttons** communicate their state
+
+### Menus & Navigation
+- [ ] **Menu structures** use proper ARIA patterns
+- [ ] **Expandable menus** indicate expanded/collapsed state
+- [ ] **Current page** indicated in navigation
+- [ ] **Breadcrumb navigation** properly structured
+- [ ] **Search functionality** accessible and properly labeled
+
+## Dynamic Content <Badge variant="warning">Important</Badge>
+
+### Live Regions
+- [ ] **Status updates** announced via aria-live regions
+- [ ] **Error messages** appear in assertive live regions
+- [ ] **Form validation** messages announced appropriately
+- [ ] **Loading states** communicated to screen readers
+- [ ] **Content changes** announced when significant
+- [ ] **Progress indicators** accessible and announced
+
+### AJAX & Single Page Applications
+- [ ] **Page title updates** when content changes significantly
+- [ ] **Focus management** during route changes
+- [ ] **Loading states** accessible to screen readers
+- [ ] **Error states** properly announced
+- [ ] **Dynamic content** added to DOM accessibly
+
+## ARIA & Advanced Patterns <Badge variant="warning">Important</Badge>
+
+### ARIA Usage
+- [ ] **ARIA labels** for complex UI components
+- [ ] **ARIA roles** only when semantic HTML isn't sufficient
+- [ ] **ARIA states** (expanded, selected, checked) properly managed
+- [ ] **ARIA properties** (describedby, labelledby) used correctly
+- [ ] **ARIA landmarks** supplement HTML5 semantic elements
+- [ ] **Custom components** follow WAI-ARIA design patterns
+
+### Complex Components
+- [ ] **Modal dialogs** follow ARIA dialog pattern
+- [ ] **Dropdown menus** use menu/menuitem roles appropriately
+- [ ] **Tab panels** follow ARIA tab pattern
+- [ ] **Accordions** use heading + button pattern
+- [ ] **Data tables** with sorting have accessible controls
+- [ ] **Carousel/slider** components are keyboard accessible
+
+## Testing & Validation <Badge variant="warning">Important</Badge>
+
+### Automated Testing
+- [ ] **Automated accessibility** testing integrated (axe-core, Lighthouse)
+- [ ] **Color contrast** automatically validated
+- [ ] **HTML validation** passes without errors
+- [ ] **ARIA validation** using accessibility linters
+- [ ] **Keyboard navigation** automated testing where possible
+
+### Manual Testing
+- [ ] **Screen reader testing** (NVDA, JAWS, VoiceOver)
+- [ ] **Keyboard-only navigation** testing
+- [ ] **High contrast mode** testing
+- [ ] **Browser zoom** testing (up to 200%)
+- [ ] **Mobile accessibility** testing with TalkBack/VoiceOver
+- [ ] **Voice control** testing (Dragon, Voice Access)
+
+## Mobile Accessibility <Badge variant="warning">Important</Badge>
+
+### Touch Accessibility
+- [ ] **Touch targets** minimum 44px × 44px
+- [ ] **Sufficient spacing** between touch targets
+- [ ] **Gestures** have alternative input methods
+- [ ] **Custom gestures** can be disabled
+- [ ] **Orientation** works in both portrait and landscape
+- [ ] **Motion-based** interactions have alternatives
+
+### Mobile Screen Readers
+- [ ] **Mobile screen readers** properly supported
+- [ ] **Swipe navigation** works correctly
+- [ ] **Touch exploration** provides proper feedback
+- [ ] **Mobile-specific** ARIA patterns implemented
+
+## Implementation Guidelines
+
+<Alert title="Start with Foundation">
+  Begin with semantic HTML and keyboard navigation. These form the foundation that other accessibility features build upon.
+</Alert>
+
+### Development Process
+
+1. **Phase 1**: Semantic HTML, keyboard navigation, alt text
+2. **Phase 2**: Color contrast, form accessibility, ARIA basics
+3. **Phase 3**: Complex ARIA patterns, advanced testing, mobile optimization
+
+### Testing Strategy
+
+- **Continuous Testing**: Integrate automated accessibility testing in CI/CD
+- **User Testing**: Include users with disabilities in your testing process
+- **Expert Review**: Have accessibility experts audit your application
+- **Regular Audits**: Conduct comprehensive accessibility audits quarterly
+
+### Tools & Resources
+
+- **Testing Tools**: axe-core, Lighthouse, WAVE, Color Oracle
+- **Screen Readers**: NVDA (free), JAWS, VoiceOver, TalkBack
+- **Guidelines**: WCAG 2.1 AA, WAI-ARIA Authoring Practices
+- **Training**: WebAIM, Deque University, accessibility courses
+
+<Alert variant="warning" title="Legal Compliance">
+  Many jurisdictions require accessibility compliance. Check local laws like ADA (US), AODA (Ontario), EN 301 549 (EU), and DDA (Australia).
+</Alert>

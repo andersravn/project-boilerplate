@@ -1,0 +1,274 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+import { CodeBlock } from '@/components/docs/documentation-components';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Structured Data Checklist</span>
+
+<p className="text-xl font-medium text-muted-foreground mb-8">Implement Schema.org markup and structured data to enhance SEO, enable rich search results, and improve content discoverability.</p>
+
+<Alert title="Structured Data Benefits">
+  Structured data helps search engines understand your content better, leading to rich snippets, enhanced search results, and improved click-through rates.
+</Alert>
+
+## <span className="text-2xl font-semibold text-cyan-800 dark:text-cyan-200">Basic Schema.org Implementation</span> <Badge variant="default">Essential</Badge>
+
+### <span className="text-lg font-medium text-cyan-700 dark:text-cyan-300">Website & Organization Markup</span>
+- [ ] **Organization schema** with name, logo, contact information
+- [ ] **Website schema** with site navigation elements
+- [ ] **WebSite schema** with search action for site search
+- [ ] **ContactPoint schema** for customer service information
+- [ ] **SameAs properties** linking to social media profiles
+- [ ] **Address schema** for physical business locations
+- [ ] **Opening hours** schema for businesses with physical locations
+
+### Page-Level Structured Data
+- [ ] **WebPage schema** for all pages with basic metadata
+- [ ] **Breadcrumb schema** for navigation hierarchy
+- [ ] **SiteNavigationElement** for main navigation menus
+- [ ] **SearchAction** schema for internal search functionality
+- [ ] **Publisher information** consistent across all pages
+- [ ] **DatePublished and dateModified** for content pages
+- [ ] **MainEntity** property to identify primary content
+
+## Content-Specific Schemas <Badge variant="default">Essential</Badge>
+
+### Article & Blog Content
+- [ ] **Article schema** for blog posts and news articles
+- [ ] **NewsArticle schema** for news content
+- [ ] **BlogPosting schema** for blog entries
+- [ ] **Author schema** with Person or Organization details
+- [ ] **Headline** and alternative headlines
+- [ ] **Image schema** with all required properties
+- [ ] **Publisher schema** with logo and name
+
+### Product & E-commerce
+- [ ] **Product schema** with name, description, image
+- [ ] **Offer schema** with price, currency, availability
+- [ ] **Review schema** and aggregate rating
+- [ ] **Brand schema** for product manufacturers
+- [ ] **SKU and GTIN** identifiers where applicable
+- [ ] **ProductCategory** and product hierarchy
+- [ ] **Merchant information** for e-commerce sites
+
+### Local Business
+- [ ] **LocalBusiness schema** for location-based businesses
+- [ ] **PostalAddress schema** with complete address information
+- [ ] **GeoCoordinates** for precise location mapping
+- [ ] **OpeningHoursSpecification** for business hours
+- [ ] **Telephone** and contact information
+- [ ] **PriceRange** and payment methods accepted
+- [ ] **Service area** for businesses that travel to customers
+
+## Advanced Schema Types <Badge variant="warning">Important</Badge>
+
+### Events & Activities
+- [ ] **Event schema** for upcoming events
+- [ ] **EventVenue** with location details
+- [ ] **Performer schema** for event entertainers/speakers
+- [ ] **Ticket information** and pricing
+- [ ] **Event status** (scheduled, cancelled, postponed)
+- [ ] **Online event** properties for virtual events
+- [ ] **Recurring event** markup for series
+
+### Educational Content
+- [ ] **Course schema** for educational content
+- [ ] **LearningResource** for tutorials and guides
+- [ ] **VideoObject schema** for educational videos
+- [ ] **FAQPage schema** for frequently asked questions
+- [ ] **HowTo schema** for step-by-step guides
+- [ ] **Quiz schema** for interactive content
+- [ ] **CreativeWork** for general educational materials
+
+### Media & Entertainment
+- [ ] **VideoObject schema** with duration, description
+- [ ] **AudioObject schema** for podcasts and audio content
+- [ ] **MusicRecording** and album information
+- [ ] **Movie schema** for film content
+- [ ] **TVEpisode and TVSeries** for television content
+- [ ] **Podcast schema** with episode details
+- [ ] **ImageObject** with comprehensive metadata
+
+## Technical Implementation <Badge variant="default">Essential</Badge>
+
+### JSON-LD Format
+- [ ] **JSON-LD** preferred over microdata or RDFa
+- [ ] **Multiple schemas** properly linked and nested
+- [ ] **Context declaration** (@context: "https://schema.org")
+- [ ] **Type declarations** (@type) for all entities
+- [ ] **ID properties** (@id) for entity relationships
+- [ ] **Graph structure** for complex relationships
+- [ ] **Escape special characters** properly in JSON
+
+### Microdata Implementation
+- [ ] **Itemscope and itemtype** attributes correctly used
+- [ ] **Itemprop** attributes mapped to schema properties
+- [ ] **Nested microdata** structures properly implemented
+- [ ] **Fallback content** visible to users
+- [ ] **Mixed format handling** (JSON-LD + Microdata) if needed
+
+### Technical Requirements
+- [ ] **Valid JSON syntax** without parsing errors
+- [ ] **Required properties** included for each schema type
+- [ ] **Recommended properties** added for better results
+- [ ] **Image URLs** absolute and accessible
+- [ ] **Date formats** follow ISO 8601 standard
+- [ ] **URL properties** use canonical URLs
+- [ ] **Multiple languages** handled with appropriate markup
+
+## Validation & Testing <Badge variant="default">Essential</Badge>
+
+### Validation Tools
+- [ ] **Google Rich Results Test** passes for all pages
+- [ ] **Schema.org validator** shows no errors
+- [ ] **Google Search Console** structured data reports clean
+- [ ] **Bing Webmaster Tools** markup validation
+- [ ] **JSON-LD Playground** testing for complex schemas
+- [ ] **Local testing** with development tools
+- [ ] **Automated testing** in CI/CD pipeline
+
+### Quality Assurance
+- [ ] **Required properties** present for each schema type
+- [ ] **Image alt text** matches schema image descriptions
+- [ ] **Consistent data** between visible content and structured data
+- [ ] **No duplicate schemas** on the same page
+- [ ] **Proper nesting** of related schemas
+- [ ] **URL consistency** across all properties
+- [ ] **Mobile compatibility** of structured data
+
+## Rich Results Optimization <Badge variant="warning">Important</Badge>
+
+### Google Rich Snippets
+- [ ] **Review stars** markup for products/services
+- [ ] **FAQ rich results** implementation
+- [ ] **How-to rich results** for instructional content
+- [ ] **Recipe rich results** for food content
+- [ ] **Job posting** rich results for career pages
+- [ ] **Event rich results** for upcoming events
+- [ ] **Product rich results** for e-commerce
+
+### Enhanced Search Features
+- [ ] **Sitelinks search box** implementation
+- [ ] **Knowledge panel** optimization
+- [ ] **Breadcrumb rich results** in search
+- [ ] **Logo** display in knowledge panels
+- [ ] **Social media** profile links
+- [ ] **Contact information** rich snippets
+- [ ] **Business hours** in search results
+
+## Industry-Specific Schemas <Badge variant="secondary">Nice to Have</Badge>
+
+### Healthcare & Medical
+- [ ] **MedicalOrganization** for healthcare providers
+- [ ] **Physician schema** for doctor profiles
+- [ ] **MedicalCondition** for health information
+- [ ] **Drug and medication** schemas
+- [ ] **MedicalProcedure** for treatment information
+- [ ] **HealthInsurancePlan** for insurance content
+
+### Real Estate
+- [ ] **RealEstate** listing schemas
+- [ ] **Residence** and property details
+- [ ] **Apartment and house** specific schemas
+- [ ] **RentAction** for rental properties
+- [ ] **GeoShape** for property boundaries
+- [ ] **FloorPlan** for property layouts
+
+### Financial Services
+- [ ] **FinancialProduct** schemas
+- [ ] **LoanOrCredit** for lending products
+- [ ] **InvestmentOrDeposit** for savings products
+- [ ] **InsuranceAgency** for insurance providers
+- [ ] **CurrencyConversionService** for financial tools
+- [ ] **PaymentMethod** acceptance markup
+
+## Implementation Strategy <Badge variant="warning">Important</Badge>
+
+### Development Workflow
+- [ ] **Schema planning** during content architecture phase
+- [ ] **Template-based** implementation for scalability
+- [ ] **Content management** system integration
+- [ ] **Dynamic data** population from CMS
+- [ ] **Fallback strategies** for missing data
+- [ ] **Version control** for schema updates
+- [ ] **Documentation** for content creators
+
+### Content Management
+- [ ] **CMS fields** mapped to schema properties
+- [ ] **Content editor** guidelines for structured data
+- [ ] **Required field** validation in CMS
+- [ ] **Preview functionality** for structured data
+- [ ] **Bulk operations** for schema updates
+- [ ] **Import/export** functionality for large sites
+- [ ] **Multi-language** schema management
+
+<Alert title="Implementation Example">
+Here's a basic JSON-LD implementation for an organization:
+</Alert>
+
+<CodeBlock language="json">
+{`{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Your Company Name",
+  "url": "https://yourwebsite.com",
+  "logo": "https://yourwebsite.com/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-800-555-5555",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main Street",
+    "addressLocality": "City",
+    "addressRegion": "State",
+    "postalCode": "12345",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://facebook.com/yourcompany",
+    "https://twitter.com/yourcompany",
+    "https://linkedin.com/company/yourcompany"
+  ]
+}`}
+</CodeBlock>
+
+## Monitoring & Maintenance <Badge variant="warning">Important</Badge>
+
+### Performance Monitoring
+- [ ] **Search Console** structured data monitoring
+- [ ] **Rich results** performance tracking
+- [ ] **Click-through rate** improvements measured
+- [ ] **Search appearance** changes monitored
+- [ ] **Error notifications** set up for validation issues
+- [ ] **Competitor analysis** for structured data usage
+- [ ] **Regular audits** of schema implementation
+
+### Ongoing Maintenance
+- [ ] **Schema updates** when content changes
+- [ ] **New schema types** adoption for emerging content
+- [ ] **Deprecated properties** removal and updates
+- [ ] **Seasonal content** schema updates
+- [ ] **Product catalog** schema maintenance
+- [ ] **Event schema** updates for recurring events
+- [ ] **Annual review** of all structured data
+
+## Common Pitfalls to Avoid
+
+<Alert variant="warning" title="Structured Data Best Practices">
+  - Don't mark up content that's not visible to users
+  - Ensure structured data matches visible page content
+  - Avoid keyword stuffing in schema descriptions
+  - Test all implementations thoroughly before deployment
+</Alert>
+
+### Technical Issues
+- [ ] **Avoid hidden content** markup
+- [ ] **Don't duplicate** the same schema unnecessarily
+- [ ] **Ensure data accuracy** matches visible content
+- [ ] **Avoid over-optimization** with excessive markup
+- [ ] **Test mobile** rendering of rich results
+- [ ] **Maintain consistency** across related pages
+- [ ] **Update schemas** when content structure changes
+
+This comprehensive structured data checklist ensures your website provides search engines with rich, accurate information about your content, leading to better search visibility and enhanced user experience in search results.
