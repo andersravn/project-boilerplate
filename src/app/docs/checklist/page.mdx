@@ -1,0 +1,99 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Checklists</span>
+
+<p className="text-xl font-medium text-muted-foreground mb-8">Comprehensive checklists to ensure your web application meets modern standards for accessibility, performance, and optimization.</p>
+
+<Alert title="Why Checklists Matter">
+  Systematic checklists help ensure consistent quality, improve user experience, and meet industry standards across all aspects of web development.
+</Alert>
+
+## <span className="text-2xl font-semibold text-slate-800 dark:text-slate-200">Available Checklists</span>
+
+<div className="grid gap-4 md:grid-cols-2 mb-8">
+  <div className="border rounded-lg p-6 hover:bg-accent/50 transition-colors">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Accessibility</h3>
+      <Badge variant="default">Essential</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-4">
+      Ensure your application is usable by everyone, including people with disabilities, and meets WCAG guidelines.
+    </div>
+    <a href="/docs/checklist/accessibility" className="text-primary text-sm font-medium hover:underline">
+      View Checklist →
+    </a>
+  </div>
+
+  <div className="border rounded-lg p-6 hover:bg-accent/50 transition-colors">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Performance</h3>
+      <Badge variant="default">Essential</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-4">
+      Optimize loading times, responsiveness, and overall application performance for better user experience.
+    </div>
+    <a href="/docs/checklist/performance" className="text-primary text-sm font-medium hover:underline">
+      View Checklist →
+    </a>
+  </div>
+
+  <div className="border rounded-lg p-6 hover:bg-accent/50 transition-colors">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Optimization</h3>
+      <Badge variant="warning">Important</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-4">
+      Fine-tune your application for maximum efficiency, SEO performance, and resource utilization.
+    </div>
+    <a href="/docs/checklist/optimization" className="text-primary text-sm font-medium hover:underline">
+      View Checklist →
+    </a>
+  </div>
+
+  <div className="border rounded-lg p-6 hover:bg-accent/50 transition-colors">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Structured Data</h3>
+      <Badge variant="warning">Important</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-4">
+      Implement Schema.org markup and structured data to enhance SEO and enable rich search results.
+    </div>
+    <a href="/docs/checklist/structured-data" className="text-primary text-sm font-medium hover:underline">
+      View Checklist →
+    </a>
+  </div>
+</div>
+
+## <span className="text-2xl font-semibold text-slate-800 dark:text-slate-200">Priority Levels</span>
+
+<div className="space-y-4 mb-8">
+  <div className="flex items-center gap-3">
+    <Badge variant="default">Essential</Badge>
+    <span className="text-sm">Critical features that are absolutely necessary for a functional, accessible application</span>
+  </div>
+  <div className="flex items-center gap-3">
+    <Badge variant="warning">Important</Badge>
+    <span className="text-sm">Features that significantly improve user experience and application quality</span>
+  </div>
+  <div className="flex items-center gap-3">
+    <Badge variant="secondary">Nice to Have</Badge>
+    <span className="text-sm">Advanced features that enhance performance and user satisfaction</span>
+  </div>
+</div>
+
+## <span className="text-2xl font-semibold text-slate-800 dark:text-slate-200">How to Use These Checklists</span>
+
+1. **Assess Current State**: Go through each checklist and check off items your application currently supports
+2. **Identify Gaps**: Note which essential and important features are missing
+3. **Prioritize Improvements**: Focus on essential items first, then important ones
+4. **Plan Implementation**: Create a roadmap for implementing missing features
+5. **Regular Review**: Periodically reassess to ensure your application evolves with standards
+
+<Alert variant="warning" title="Implementation Timeline">
+  Don't try to implement everything at once. Start with essential features and gradually add improvements based on user feedback and business priorities.
+</Alert>
+
+## <span className="text-2xl font-semibold text-slate-800 dark:text-slate-200">Getting Started</span>
+
+Begin with the [Accessibility](/docs/checklist/accessibility) checklist as it covers fundamental requirements for inclusive design, then move through [Performance](/docs/checklist/performance) and [Optimization](/docs/checklist/optimization) based on your project priorities.

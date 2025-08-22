@@ -1,0 +1,248 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+import { ChecklistItem } from '@/components/docs/checklist-item';
+import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Performance Checklist</span>
+
+<ChecklistProgressWrapper pageTitle="Performance" />
+
+<LeadText>Optimize loading times, responsiveness, and overall application performance for better user experience and Core Web Vitals.</LeadText>
+
+<Alert title="Performance Matters">
+  Page speed directly impacts user engagement, conversion rates, and search rankings. Every 100ms delay in load time can reduce conversions by 7%.
+</Alert>
+
+## Core Web Vitals <Badge variant="default">Essential</Badge>
+
+### Largest Contentful Paint (LCP)
+<ChecklistItem title="LCP under 2.5 seconds">for good user experience</ChecklistItem>
+<ChecklistItem title="Optimize largest element">(usually hero image or heading)</ChecklistItem>
+<ChecklistItem title="Preload critical resources">(fonts, hero images, above-fold CSS)</ChecklistItem>
+<ChecklistItem title="Optimize images">with proper formats and compression</ChecklistItem>
+<ChecklistItem title="Minimize render-blocking resources"></ChecklistItem>
+<ChecklistItem title="Use responsive images">with srcset and sizes</ChecklistItem>
+<ChecklistItem title="Implement lazy loading">for below-fold images</ChecklistItem>
+
+### First Input Delay (FID) / Interaction to Next Paint (INP)
+<ChecklistItem title="FID under 100ms">(INP under 200ms for good rating)</ChecklistItem>
+<ChecklistItem title="Minimize JavaScript">execution time</ChecklistItem>
+<ChecklistItem title="Code splitting">to reduce main thread blocking</ChecklistItem>
+<ChecklistItem title="Optimize event handlers">and avoid long tasks</ChecklistItem>
+<ChecklistItem title="Use web workers">for heavy computations</ChecklistItem>
+<ChecklistItem title="Defer non-critical JavaScript"></ChecklistItem>
+<ChecklistItem title="Optimize third-party scripts"></ChecklistItem>
+
+### Cumulative Layout Shift (CLS)
+<ChecklistItem title="CLS under 0.1">for good user experience</ChecklistItem>
+<ChecklistItem title="Set size attributes">for images and videos</ChecklistItem>
+<ChecklistItem title="Reserve space">for dynamic content</ChecklistItem>
+<ChecklistItem title="Avoid injecting content">above existing content</ChecklistItem>
+<ChecklistItem title="Use CSS aspect-ratio">for responsive media</ChecklistItem>
+<ChecklistItem title="Preload critical fonts">and use font-display: swap</ChecklistItem>
+<ChecklistItem title="Minimize web font">layout shifts</ChecklistItem>
+
+## Loading Performance <Badge variant="default">Essential</Badge>
+
+### Critical Resource Optimization
+<ChecklistItem title="Critical CSS">inlined or preloaded</ChecklistItem>
+<ChecklistItem title="Eliminate render-blocking">CSS and JavaScript</ChecklistItem>
+<ChecklistItem title="Optimize critical path">length</ChecklistItem>
+<ChecklistItem title="Preconnect to external">domains</ChecklistItem>
+<ChecklistItem title="DNS prefetch">for third-party resources</ChecklistItem>
+<ChecklistItem title="Resource hints">(preload, prefetch) implemented</ChecklistItem>
+<ChecklistItem title="HTTP/2">or HTTP/3 enabled</ChecklistItem>
+
+### Asset Optimization
+<ChecklistItem title="Image compression">(WebP, AVIF for modern browsers)</ChecklistItem>
+<ChecklistItem title="Next-gen image formats">with fallbacks</ChecklistItem>
+<ChecklistItem title="Responsive images">for different screen sizes</ChecklistItem>
+<ChecklistItem title="Image dimensions">specified to prevent layout shift</ChecklistItem>
+<ChecklistItem title="Icon fonts replaced">with SVG sprites or icon fonts</ChecklistItem>
+<ChecklistItem title="CSS and JavaScript">minified and compressed</ChecklistItem>
+<ChecklistItem title="Dead code elimination">implemented</ChecklistItem>
+
+### Caching Strategy
+<ChecklistItem title="Browser caching">headers set appropriately</ChecklistItem>
+<ChecklistItem title="CDN">implemented for static assets</ChecklistItem>
+<ChecklistItem title="Service worker">for offline functionality and caching</ChecklistItem>
+<ChecklistItem title="Application cache">strategy defined</ChecklistItem>
+<ChecklistItem title="API response caching">where appropriate</ChecklistItem>
+<ChecklistItem title="Static asset versioning">for cache busting</ChecklistItem>
+<ChecklistItem title="Edge caching">for dynamic content where possible</ChecklistItem>
+
+## JavaScript Performance <Badge variant="warning">Important</Badge>
+
+### Bundle Optimization
+<ChecklistItem title="JavaScript bundle size">under 170KB (compressed)</ChecklistItem>
+<ChecklistItem title="Code splitting">by route and component</ChecklistItem>
+<ChecklistItem title="Tree shaking">to remove unused code</ChecklistItem>
+<ChecklistItem title="Dynamic imports">for non-critical features</ChecklistItem>
+<ChecklistItem title="Webpack bundle analyzer">used to identify bloat</ChecklistItem>
+<ChecklistItem title="Polyfills">only loaded when needed</ChecklistItem>
+<ChecklistItem title="Third-party dependencies">audited for size</ChecklistItem>
+
+### Runtime Performance
+<ChecklistItem title="Avoid long tasks">(over 50ms on main thread)</ChecklistItem>
+<ChecklistItem title="Optimize rendering">performance</ChecklistItem>
+<ChecklistItem title="Use requestAnimationFrame">for animations</ChecklistItem>
+<ChecklistItem title="Debounce and throttle">expensive operations</ChecklistItem>
+<ChecklistItem title="Virtual scrolling">for long lists</ChecklistItem>
+<ChecklistItem title="Memoization">for expensive calculations</ChecklistItem>
+<ChecklistItem title="Web workers">for CPU-intensive tasks</ChecklistItem>
+
+### Framework-Specific Optimizations
+<ChecklistItem title="React">useMemo, useCallback, React.lazy</ChecklistItem>
+<ChecklistItem title="Vue">v-memo, defineAsyncComponent, keep-alive</ChecklistItem>
+<ChecklistItem title="Next.js">Image optimization, automatic code splitting</ChecklistItem>
+<ChecklistItem title="Angular">OnPush change detection, lazy loading modules</ChecklistItem>
+<ChecklistItem title="Component lazy loading">implemented</ChecklistItem>
+<ChecklistItem title="Bundle splitting">by framework features</ChecklistItem>
+
+## Network Performance <Badge variant="warning">Important</Badge>
+
+### HTTP Optimization
+<ChecklistItem title="HTTP/2">server push for critical resources</ChecklistItem>
+<ChecklistItem title="Reduce HTTP requests">through bundling and sprites</ChecklistItem>
+<ChecklistItem title="Optimize API calls">(batching, GraphQL)</ChecklistItem>
+<ChecklistItem title="Implement request">caching and deduplication</ChecklistItem>
+<ChecklistItem title="Use compression">(Gzip, Brotli) for text assets</ChecklistItem>
+<ChecklistItem title="Minimize redirects">and optimize redirect chains</ChecklistItem>
+<ChecklistItem title="Enable keep-alive">connections</ChecklistItem>
+
+### Resource Loading
+<ChecklistItem title="Lazy load">images and videos</ChecklistItem>
+<ChecklistItem title="Progressive image">loading (blur-up technique)</ChecklistItem>
+<ChecklistItem title="Intersection Observer">for efficient lazy loading</ChecklistItem>
+<ChecklistItem title="Preload critical resources">above the fold</ChecklistItem>
+<ChecklistItem title="Prefetch resources">for likely next actions</ChecklistItem>
+<ChecklistItem title="Background loading">for non-critical content</ChecklistItem>
+<ChecklistItem title="Offline-first">strategy with service workers</ChecklistItem>
+
+## Rendering Performance <Badge variant="warning">Important</Badge>
+
+### CSS Performance
+<ChecklistItem title="Critical CSS">inlined (under 14KB)</ChecklistItem>
+<ChecklistItem title="CSS containment">for isolated components</ChecklistItem>
+<ChecklistItem title="Avoid complex selectors">and deep nesting</ChecklistItem>
+<ChecklistItem title="Use CSS transforms">instead of changing layout properties</ChecklistItem>
+<ChecklistItem title="GPU acceleration">for animations (transform, opacity)</ChecklistItem>
+<ChecklistItem title="CSS custom properties">instead of JavaScript for theming</ChecklistItem>
+<ChecklistItem title="Remove unused CSS">with tools like PurgeCSS</ChecklistItem>
+
+### Animation Performance
+<ChecklistItem title="60fps animations">using transform and opacity</ChecklistItem>
+<ChecklistItem title="Avoid animating">layout properties (width, height, position)</ChecklistItem>
+<ChecklistItem title="Use will-change">sparingly and remove after animation</ChecklistItem>
+<ChecklistItem title="Optimize SVG animations">and use CSS animations when possible</ChecklistItem>
+<ChecklistItem title="Reduce animation complexity">on lower-end devices</ChecklistItem>
+<ChecklistItem title="Prefers-reduced-motion">media query respected</ChecklistItem>
+<ChecklistItem title="Hardware acceleration">enabled for smooth animations</ChecklistItem>
+
+## Memory & Resource Management <Badge variant="secondary">Nice to Have</Badge>
+
+### Memory Optimization
+<ChecklistItem title="Memory leaks">identified and fixed</ChecklistItem>
+<ChecklistItem title="Event listeners">properly removed</ChecklistItem>
+<ChecklistItem title="Large objects">cleaned up when not needed</ChecklistItem>
+<ChecklistItem title="DOM nodes">removed from memory when no longer needed</ChecklistItem>
+<ChecklistItem title="Image references">cleared for garbage collection</ChecklistItem>
+<ChecklistItem title="WeakMap and WeakSet">used appropriately</ChecklistItem>
+<ChecklistItem title="Memory usage">monitored in production</ChecklistItem>
+
+### Resource Cleanup
+<ChecklistItem title="Timers and intervals">cleared properly</ChecklistItem>
+<ChecklistItem title="WebSocket connections">closed appropriately</ChecklistItem>
+<ChecklistItem title="API requests">cancelled when components unmount</ChecklistItem>
+<ChecklistItem title="File handles">and streams closed</ChecklistItem>
+<ChecklistItem title="Cache eviction">strategies implemented</ChecklistItem>
+<ChecklistItem title="Background tasks">stopped when not needed</ChecklistItem>
+
+## Mobile Performance <Badge variant="warning">Important</Badge>
+
+### Mobile-Specific Optimizations
+<ChecklistItem title="Touch delay">eliminated (300ms click delay)</ChecklistItem>
+<ChecklistItem title="Viewport meta tag">optimized</ChecklistItem>
+<ChecklistItem title="Mobile-specific">image sizes served</ChecklistItem>
+<ChecklistItem title="Reduce battery usage">through efficient code</ChecklistItem>
+<ChecklistItem title="Optimize for slower">CPUs and limited memory</ChecklistItem>
+<ChecklistItem title="Network-aware">loading (slow 3G considerations)</ChecklistItem>
+<ChecklistItem title="Progressive enhancement">for basic functionality</ChecklistItem>
+
+### Responsive Performance
+<ChecklistItem title="Mobile-first">CSS loading</ChecklistItem>
+<ChecklistItem title="Conditional loading">based on device capabilities</ChecklistItem>
+<ChecklistItem title="Optimize touch interactions">and gestures</ChecklistItem>
+<ChecklistItem title="Reduce data usage">on mobile networks</ChecklistItem>
+<ChecklistItem title="Battery-efficient">animations and interactions</ChecklistItem>
+<ChecklistItem title="Connection type">detection and adaptation</ChecklistItem>
+
+## Monitoring & Measurement <Badge variant="warning">Important</Badge>
+
+### Performance Monitoring
+<ChecklistItem title="Real User Monitoring">(RUM) implemented</ChecklistItem>
+<ChecklistItem title="Core Web Vitals">tracked in production</ChecklistItem>
+<ChecklistItem title="Performance budgets">defined and monitored</ChecklistItem>
+<ChecklistItem title="Lighthouse">CI integration for automated testing</ChecklistItem>
+<ChecklistItem title="WebPageTest">for detailed performance analysis</ChecklistItem>
+<ChecklistItem title="Speed Index">and other metrics tracked</ChecklistItem>
+<ChecklistItem title="Performance regression">alerts set up</ChecklistItem>
+
+### Analytics Integration
+<ChecklistItem title="Page load times">tracked by user segment</ChecklistItem>
+<ChecklistItem title="Performance impact">on business metrics measured</ChecklistItem>
+<ChecklistItem title="A/B testing">for performance optimizations</ChecklistItem>
+<ChecklistItem title="Error tracking">for performance-related issues</ChecklistItem>
+<ChecklistItem title="User experience">metrics correlated with performance</ChecklistItem>
+<ChecklistItem title="Performance dashboards">for monitoring trends</ChecklistItem>
+
+## Advanced Optimizations <Badge variant="secondary">Nice to Have</Badge>
+
+### Modern Web Technologies
+<ChecklistItem title="Service Workers">for advanced caching strategies</ChecklistItem>
+<ChecklistItem title="Web Assembly">for performance-critical operations</ChecklistItem>
+<ChecklistItem title="Edge-side rendering">for dynamic content</ChecklistItem>
+<ChecklistItem title="Streaming SSR">for faster perceived performance</ChecklistItem>
+<ChecklistItem title="Progressive Web App">features implemented</ChecklistItem>
+<ChecklistItem title="Background sync">for offline functionality</ChecklistItem>
+<ChecklistItem title="Push notifications">for re-engagement</ChecklistItem>
+
+### Performance Testing
+<ChecklistItem title="Load testing">under various conditions</ChecklistItem>
+<ChecklistItem title="Stress testing">for high traffic scenarios</ChecklistItem>
+<ChecklistItem title="Performance testing">in CI/CD pipeline</ChecklistItem>
+<ChecklistItem title="Device testing">on low-end devices</ChecklistItem>
+<ChecklistItem title="Network testing">on slow connections</ChecklistItem>
+<ChecklistItem title="Performance profiling">tools integrated</ChecklistItem>
+
+## Implementation Strategy
+
+<Alert title="Performance Budget">
+  Set performance budgets for different metrics and fail builds that exceed them. This prevents performance regressions over time.
+</Alert>
+
+### Development Process
+
+1. **Phase 1**: Core Web Vitals optimization, image optimization, basic caching
+2. **Phase 2**: JavaScript optimization, advanced caching, monitoring setup
+3. **Phase 3**: Advanced techniques, mobile optimization, performance culture
+
+### Performance Culture
+
+- **Performance Reviews**: Include performance impact in code reviews
+- **Performance Testing**: Automate performance testing in CI/CD
+- **Team Training**: Educate team on performance best practices
+- **Performance Champions**: Designate team members as performance advocates
+- **Regular Audits**: Conduct quarterly performance audits
+
+### Tools & Resources
+
+- **Testing Tools**: Lighthouse, WebPageTest, Chrome DevTools
+- **Monitoring**: New Relic, DataDog, Google Analytics 4
+- **Build Tools**: Webpack Bundle Analyzer, source-map-explorer
+- **Image Optimization**: Squoosh, ImageOptim, TinyPNG
+
+<Alert variant="warning" title="Performance vs Features">
+  Balance feature richness with performance. Sometimes simpler solutions perform better and provide superior user experience.
+</Alert>

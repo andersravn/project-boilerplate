@@ -85,6 +85,37 @@ export default function DocsLayout({
 						</div>
 
 						<div>
+							<h3 className="mb-2 font-medium text-sm">Checklists</h3>
+							<ul className="space-y-1 text-sm">
+								<li>
+									<Link href="/docs/checklist" className="text-muted-foreground transition-colors hover:text-foreground">
+										Overview
+									</Link>
+								</li>
+								<li>
+									<Link href="/docs/checklist/accessibility" className="text-muted-foreground transition-colors hover:text-foreground">
+										• Accessibility
+									</Link>
+								</li>
+								<li>
+									<Link href="/docs/checklist/performance" className="text-muted-foreground transition-colors hover:text-foreground">
+										• Performance
+									</Link>
+								</li>
+								<li>
+									<Link href="/docs/checklist/optimization" className="text-muted-foreground transition-colors hover:text-foreground">
+										• Optimization
+									</Link>
+								</li>
+								<li>
+									<Link href="/docs/checklist/structured-data" className="text-muted-foreground transition-colors hover:text-foreground">
+										• Structured Data
+									</Link>
+								</li>
+							</ul>
+						</div>
+
+						<div>
 							<h3 className="mb-2 font-medium text-sm">Integration</h3>
 							<ul className="space-y-1 text-sm">
 								<li>
@@ -117,7 +148,7 @@ export default function DocsLayout({
 				{/* Main Content */}
 				<main className="flex-1">
 					<div className="container mx-auto max-w-4xl px-8 py-8">
-						<div className="max-w-none">{children}</div>
+						<div className="max-w-none docs-content">{children}</div>
 					</div>
 				</main>
 			</div>

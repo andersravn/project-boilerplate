@@ -120,3 +120,65 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+/* MDX Documentation Content Styling */
+@layer components {
+  .docs-content .lead {
+    @apply text-xl font-medium text-muted-foreground mb-8 mt-4;
+  }
+
+  .docs-content h2 {
+    @apply text-2xl font-semibold text-foreground mb-4 mt-8 pb-2 border-b border-border;
+  }
+  
+  .docs-content h3 {
+    @apply text-xl font-medium text-foreground mb-3 mt-6;
+  }
+  
+  .docs-content h4 {
+    @apply text-lg font-medium text-foreground mb-2 mt-4;
+  }
+  
+  .docs-content h5 {
+    @apply text-base font-medium text-foreground mb-2 mt-3;
+  }
+  
+  .docs-content h6 {
+    @apply text-sm font-medium text-foreground mb-2 mt-3;
+  }
+
+  /* Special styling for headings with span children (gradient headings) */
+  .docs-content h1:has(span),
+  .docs-content h2:has(span),
+  .docs-content h3:has(span) {
+    @apply border-b-0 pb-0;
+  }
+
+  .docs-content p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .docs-content ul, .docs-content ol {
+    @apply mb-4 pl-6;
+  }
+
+  .docs-content li {
+    @apply mb-2;
+  }
+
+  .docs-content blockquote {
+    @apply border-l-4 border-border pl-4 my-4 italic text-muted-foreground;
+  }
+
+  .docs-content code {
+    @apply bg-muted px-1 py-0.5 rounded text-sm;
+  }
+
+  .docs-content pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  .docs-content pre code {
+    @apply bg-transparent p-0;
+  }
+}
