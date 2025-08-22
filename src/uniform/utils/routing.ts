@@ -1,4 +1,8 @@
-import { ResolvedRouteGetResponse, RouteGetResponseEdgehancedComposition, LinkParamValue } from '@uniformdev/canvas';
+import type {
+	ResolvedRouteGetResponse,
+	RouteGetResponseEdgehancedComposition,
+	LinkParamValue,
+} from "@uniformdev/canvas";
 
 const DYNAMIC_KEY_REGEX = /:([a-zA-Z0-9-_]+)/g;
 
@@ -10,14 +14,14 @@ const DYNAMIC_KEY_REGEX = /:([a-zA-Z0-9-_]+)/g;
  * @returns {string} - The resolved route with placeholders replaced.
  */
 export const resolveRouteToPath = (
-  matchedRoute: string,
-  dynamicInputs: { [dynamicKey: string]: string } | undefined
+	matchedRoute: string,
+	dynamicInputs: { [dynamicKey: string]: string } | undefined,
 ): string =>
-  dynamicInputs
-    ? matchedRoute.replace(DYNAMIC_KEY_REGEX, dynamicKey => {
-        return dynamicInputs?.[dynamicKey.substring(1)] || dynamicKey;
-      })
-    : matchedRoute;
+	dynamicInputs
+		? matchedRoute.replace(DYNAMIC_KEY_REGEX, (dynamicKey) => {
+				return dynamicInputs?.[dynamicKey.substring(1)] || dynamicKey;
+			})
+		: matchedRoute;
 
 /**
  * Checks if a given route response is free of errors and contains a composition.
@@ -25,8 +29,12 @@ export const resolveRouteToPath = (
  * @param {ResolvedRouteGetResponse} route - The route response to check.
  * @returns {boolean} - True if the route contains a valid composition, otherwise false.
  */
-export const isRouteWithoutErrors = (route: ResolvedRouteGetResponse): route is RouteGetResponseEdgehancedComposition =>
-  'compositionApiResponse' in route && !!route.compositionApiResponse && 'composition' in route.compositionApiResponse;
+export const isRouteWithoutErrors = (
+	route: ResolvedRouteGetResponse,
+): route is RouteGetResponseEdgehancedComposition =>
+	"compositionApiResponse" in route &&
+	!!route.compositionApiResponse &&
+	"composition" in route.compositionApiResponse;
 
 /**
  * Formats a Uniform link into a URL or mailto link based on its type.
@@ -35,11 +43,11 @@ export const isRouteWithoutErrors = (route: ResolvedRouteGetResponse): route is 
  * @returns {string} - The formatted link as a string.
  */
 export const formatUniformLink = (uniformLink?: LinkParamValue): string => {
-  if (!uniformLink) return '';
+	if (!uniformLink) return "";
 
-  if (uniformLink.type === 'email') {
-    return `mailto:${uniformLink.path}`;
-  }
+	if (uniformLink.type === "email") {
+		return `mailto:${uniformLink.path}`;
+	}
 
-  return uniformLink.path;
+	return uniformLink.path;
 };

@@ -207,10 +207,18 @@ export default defineConfig({
 
 ## TODO
 [ ] Security headers
+
 [ ] Umbraco components like UmbracoImage and Umbraco Link
+
 [ ] TS generation for Umbraco
+
 [ ] NIS2 hjælp
+
 [ ] Min/max width "site"/content (nav/footer and content)
 sitemap.xml - support for different languages
 robots.txt
+
 [ ] Logging
+
+[ ] Use AI to review, especially for a11y
+
