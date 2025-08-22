@@ -1,0 +1,219 @@
+import { Badge } from '@/components/docs/ui-helpers';
+import { Alert } from '@/components/docs/ui-helpers';
+import { ChecklistItem } from '@/components/docs/checklist-item';
+import { ChecklistProgressWrapper } from '@/components/docs/checklist-progress-wrapper';
+import { LeadText } from '@/components/docs/lead-text';
+
+# <span className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Accessibility Checklist</span>
+
+<ChecklistProgressWrapper pageTitle="Accessibility" />
+
+<LeadText>Ensure your web application is usable by everyone, including people with disabilities, and meets WCAG 2.1 AA guidelines.</LeadText>
+
+<Alert title="Accessibility is Essential">
+  Accessibility is not just a legal requirement in many jurisdictions—it's a fundamental principle of inclusive design that makes your application better for everyone.
+</Alert>
+
+## Semantic HTML & Structure <Badge variant="default">Essential</Badge>
+
+### Document Structure
+<ChecklistItem title="Proper HTML5 semantic elements">(header, nav, main, section, article, aside, footer)</ChecklistItem>
+<ChecklistItem title="Single H1 per page">with logical heading hierarchy (H1 → H2 → H3)</ChecklistItem>
+<ChecklistItem title="Skip navigation links">to main content</ChecklistItem>
+<ChecklistItem title="Landmark roles">where semantic HTML isn't sufficient</ChecklistItem>
+<ChecklistItem title="Page title describes">the page content and updates on navigation</ChecklistItem>
+<ChecklistItem title="Language attribute">set on html element and changes declared</ChecklistItem>
+<ChecklistItem title="Reading order is logical">when CSS is disabled</ChecklistItem>
+
+### Lists and Tables
+<ChecklistItem title="Proper list markup">(ul, ol, dl) for grouped content</ChecklistItem>
+<ChecklistItem title="Table headers">(th) with scope attributes for data tables</ChecklistItem>
+<ChecklistItem title="Table captions">or aria-label for complex tables</ChecklistItem>
+<ChecklistItem title="Column/row headers">associated with data cells</ChecklistItem>
+<ChecklistItem title="Layout tables avoided">(use CSS Grid/Flexbox instead)</ChecklistItem>
+
+## Keyboard Navigation <Badge variant="default">Essential</Badge>
+
+### Focus Management
+<ChecklistItem title="All interactive elements">accessible via keyboard</ChecklistItem>
+<ChecklistItem title="Visible focus indicators">with sufficient contrast (3:1 ratio)</ChecklistItem>
+<ChecklistItem title="Logical tab order">that follows visual flow</ChecklistItem>
+<ChecklistItem title="Focus trapping">in modals and overlays</ChecklistItem>
+<ChecklistItem title="Focus restoration">when closing modals/dropdowns</ChecklistItem>
+<ChecklistItem title="Custom focus styles">that are clearly visible</ChecklistItem>
+<ChecklistItem title="No keyboard traps">(users can always tab out)</ChecklistItem>
+
+### Keyboard Shortcuts
+<ChecklistItem title="Arrow key navigation">for menus and component collections</ChecklistItem>
+<ChecklistItem title="Enter/Space">activation for buttons and links</ChecklistItem>
+<ChecklistItem title="Escape key">closes modals, dropdowns, and overlays</ChecklistItem>
+<ChecklistItem title="Standard shortcuts">work (Ctrl+F for search, etc.)</ChecklistItem>
+<ChecklistItem title="Custom shortcuts">documented and non-conflicting</ChecklistItem>
+
+## Images & Media <Badge variant="default">Essential</Badge>
+
+### Alternative Text
+<ChecklistItem title="Meaningful alt text">for informative images</ChecklistItem>
+<ChecklistItem title="Empty alt attribute">for decorative images</ChecklistItem>
+<ChecklistItem title="Complex image descriptions">for charts, graphs, diagrams</ChecklistItem>
+<ChecklistItem title="Image captions">supplement but don't replace alt text</ChecklistItem>
+<ChecklistItem title="Alt text under 125 characters">when possible</ChecklistItem>
+<ChecklistItem title="No 'image of' or 'picture of'">prefixes in alt text</ChecklistItem>
+
+### Video & Audio
+<ChecklistItem title="Captions">for all video content</ChecklistItem>
+<ChecklistItem title="Audio descriptions">for visual content in videos</ChecklistItem>
+<ChecklistItem title="Transcripts">for audio-only content</ChecklistItem>
+<ChecklistItem title="Auto-playing media">can be paused/stopped</ChecklistItem>
+<ChecklistItem title="Video controls">are keyboard accessible</ChecklistItem>
+<ChecklistItem title="No seizure-inducing">flashing content (3 flashes per second max)</ChecklistItem>
+
+## Color & Contrast <Badge variant="default">Essential</Badge>
+
+### Color Usage
+<ChecklistItem title="Color contrast">meets WCAG AA standards (4.5:1 for normal text, 3:1 for large text)</ChecklistItem>
+<ChecklistItem title="Information not conveyed">by color alone</ChecklistItem>
+<ChecklistItem title="Focus indicators">have 3:1 contrast ratio</ChecklistItem>
+<ChecklistItem title="Interactive elements">have sufficient contrast in all states</ChecklistItem>
+<ChecklistItem title="UI components">meet 3:1 contrast ratio requirement</ChecklistItem>
+<ChecklistItem title="Color blindness">considerations (avoid red/green only combinations)</ChecklistItem>
+
+### Visual Design
+<ChecklistItem title="Text can be enlarged">to 200% without horizontal scrolling</ChecklistItem>
+<ChecklistItem title="Content reflows">properly at different zoom levels</ChecklistItem>
+<ChecklistItem title="High contrast mode">supported</ChecklistItem>
+<ChecklistItem title="Dark mode">considerations if applicable</ChecklistItem>
+<ChecklistItem title="Sufficient spacing">between interactive elements (44px minimum)</ChecklistItem>
+
+## Forms & Inputs <Badge variant="default">Essential</Badge>
+
+### Form Labels
+<ChecklistItem title="All inputs have labels">(visible labels or aria-label)</ChecklistItem>
+<ChecklistItem title="Labels are associated">with inputs via for/id or wrapping</ChecklistItem>
+<ChecklistItem title="Required fields">clearly marked</ChecklistItem>
+<ChecklistItem title="Fieldsets and legends">for grouped form controls</ChecklistItem>
+<ChecklistItem title="Input purposes">identified with autocomplete attributes</ChecklistItem>
+<ChecklistItem title="Placeholder text">doesn't replace labels</ChecklistItem>
+
+### Error Handling
+<ChecklistItem title="Error messages">clearly identify the problem</ChecklistItem>
+<ChecklistItem title="Error messages">associated with inputs via aria-describedby</ChecklistItem>
+<ChecklistItem title="Errors announced">to screen readers (aria-live regions)</ChecklistItem>
+<ChecklistItem title="Inline validation">doesn't interfere with screen readers</ChecklistItem>
+<ChecklistItem title="Success messages">also announced to assistive technology</ChecklistItem>
+<ChecklistItem title="Form submission errors">clearly explained and actionable</ChecklistItem>
+
+## Interactive Elements <Badge variant="default">Essential</Badge>
+
+### Buttons & Links
+<ChecklistItem title="Button vs link">semantics used correctly</ChecklistItem>
+<ChecklistItem title="Button text">describes the action (not "click here")</ChecklistItem>
+<ChecklistItem title="Link text">describes the destination or purpose</ChecklistItem>
+<ChecklistItem title="Button states">(disabled, pressed) communicated to screen readers</ChecklistItem>
+<ChecklistItem title="Icon buttons">have accessible names</ChecklistItem>
+<ChecklistItem title="Toggle buttons">communicate their state</ChecklistItem>
+
+### Menus & Navigation
+<ChecklistItem title="Menu structures">use proper ARIA patterns</ChecklistItem>
+<ChecklistItem title="Expandable menus">indicate expanded/collapsed state</ChecklistItem>
+<ChecklistItem title="Current page">indicated in navigation</ChecklistItem>
+<ChecklistItem title="Breadcrumb navigation">properly structured</ChecklistItem>
+<ChecklistItem title="Search functionality">accessible and properly labeled</ChecklistItem>
+
+## Dynamic Content <Badge variant="warning">Important</Badge>
+
+### Live Regions
+<ChecklistItem title="Status updates">announced via aria-live regions</ChecklistItem>
+<ChecklistItem title="Error messages">appear in assertive live regions</ChecklistItem>
+<ChecklistItem title="Form validation">messages announced appropriately</ChecklistItem>
+<ChecklistItem title="Loading states">communicated to screen readers</ChecklistItem>
+<ChecklistItem title="Content changes">announced when significant</ChecklistItem>
+<ChecklistItem title="Progress indicators">accessible and announced</ChecklistItem>
+
+### AJAX & Single Page Applications
+<ChecklistItem title="Page title updates">when content changes significantly</ChecklistItem>
+<ChecklistItem title="Focus management">during route changes</ChecklistItem>
+<ChecklistItem title="Loading states">accessible to screen readers</ChecklistItem>
+<ChecklistItem title="Error states">properly announced</ChecklistItem>
+<ChecklistItem title="Dynamic content">added to DOM accessibly</ChecklistItem>
+
+## ARIA & Advanced Patterns <Badge variant="warning">Important</Badge>
+
+### ARIA Usage
+<ChecklistItem title="ARIA labels">for complex UI components</ChecklistItem>
+<ChecklistItem title="ARIA roles">only when semantic HTML isn't sufficient</ChecklistItem>
+<ChecklistItem title="ARIA states">(expanded, selected, checked) properly managed</ChecklistItem>
+<ChecklistItem title="ARIA properties">(describedby, labelledby) used correctly</ChecklistItem>
+<ChecklistItem title="ARIA landmarks">supplement HTML5 semantic elements</ChecklistItem>
+<ChecklistItem title="Custom components">follow WAI-ARIA design patterns</ChecklistItem>
+
+### Complex Components
+<ChecklistItem title="Modal dialogs">follow ARIA dialog pattern</ChecklistItem>
+<ChecklistItem title="Dropdown menus">use menu/menuitem roles appropriately</ChecklistItem>
+<ChecklistItem title="Tab panels">follow ARIA tab pattern</ChecklistItem>
+<ChecklistItem title="Accordions">use heading + button pattern</ChecklistItem>
+<ChecklistItem title="Data tables">with sorting have accessible controls</ChecklistItem>
+<ChecklistItem title="Carousel/slider">components are keyboard accessible</ChecklistItem>
+
+## Testing & Validation <Badge variant="warning">Important</Badge>
+
+### Automated Testing
+<ChecklistItem title="Automated accessibility">testing integrated (axe-core, Lighthouse)</ChecklistItem>
+<ChecklistItem title="Color contrast">automatically validated</ChecklistItem>
+<ChecklistItem title="HTML validation">passes without errors</ChecklistItem>
+<ChecklistItem title="ARIA validation">using accessibility linters</ChecklistItem>
+<ChecklistItem title="Keyboard navigation">automated testing where possible</ChecklistItem>
+
+### Manual Testing
+<ChecklistItem title="Screen reader testing">(NVDA, JAWS, VoiceOver)</ChecklistItem>
+<ChecklistItem title="Keyboard-only navigation">testing</ChecklistItem>
+<ChecklistItem title="High contrast mode">testing</ChecklistItem>
+<ChecklistItem title="Browser zoom">testing (up to 200%)</ChecklistItem>
+<ChecklistItem title="Mobile accessibility">testing with TalkBack/VoiceOver</ChecklistItem>
+<ChecklistItem title="Voice control">testing (Dragon, Voice Access)</ChecklistItem>
+
+## Mobile Accessibility <Badge variant="warning">Important</Badge>
+
+### Touch Accessibility
+<ChecklistItem title="Touch targets">minimum 44px × 44px</ChecklistItem>
+<ChecklistItem title="Sufficient spacing">between touch targets</ChecklistItem>
+<ChecklistItem title="Gestures">have alternative input methods</ChecklistItem>
+<ChecklistItem title="Custom gestures">can be disabled</ChecklistItem>
+<ChecklistItem title="Orientation">works in both portrait and landscape</ChecklistItem>
+<ChecklistItem title="Motion-based">interactions have alternatives</ChecklistItem>
+
+### Mobile Screen Readers
+<ChecklistItem title="Mobile screen readers">properly supported</ChecklistItem>
+<ChecklistItem title="Swipe navigation">works correctly</ChecklistItem>
+<ChecklistItem title="Touch exploration">provides proper feedback</ChecklistItem>
+<ChecklistItem title="Mobile-specific">ARIA patterns implemented</ChecklistItem>
+
+## Implementation Guidelines
+
+<Alert title="Start with Foundation">
+  Begin with semantic HTML and keyboard navigation. These form the foundation that other accessibility features build upon.
+</Alert>
+
+### Development Process
+
+1. **Phase 1**: Semantic HTML, keyboard navigation, alt text
+2. **Phase 2**: Color contrast, form accessibility, ARIA basics
+3. **Phase 3**: Complex ARIA patterns, advanced testing, mobile optimization
+
+### Testing Strategy
+
+- **Continuous Testing**: Integrate automated accessibility testing in CI/CD
+- **User Testing**: Include users with disabilities in your testing process
+- **Expert Review**: Have accessibility experts audit your application
+- **Regular Audits**: Conduct comprehensive accessibility audits quarterly
+
+### Tools & Resources
+
+- **Testing Tools**: axe-core, Lighthouse, WAVE, Color Oracle
+- **Screen Readers**: NVDA (free), JAWS, VoiceOver, TalkBack
+- **Guidelines**: WCAG 2.1 AA, WAI-ARIA Authoring Practices
+- **Training**: WebAIM, Deque University, accessibility courses
+
+<Alert variant="warning" title="Legal Compliance">
+  Many jurisdictions require accessibility compliance. Check local laws like ADA (US), AODA (Ontario), EN 301 549 (EU), and DDA (Australia).
+</Alert>
