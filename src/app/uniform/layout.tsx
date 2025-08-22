@@ -1,17 +1,15 @@
-import { UniformContext } from '@uniformdev/canvas-next-rsc';
+import { UniformContext } from "@uniformdev/canvas-next-rsc";
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>
-        <UniformContext>
-          {children}
-        </UniformContext>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="en">
+			<body>
+				<UniformContext>{children}</UniformContext>
+			</body>
+		</html>
+	);
 }
