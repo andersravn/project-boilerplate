@@ -1,0 +1,247 @@
+import { CodeBlock, ComponentPreview } from '@/components/docs/documentation-components';
+import { Alert, Badge } from '@/components/docs/ui-helpers';
+
+# Umbraco Integration
+
+Complete setup guide for Umbraco headless CMS integration with auto-generated TypeScript types and Delivery API.
+
+## Overview
+
+This boilerplate includes:
+
+- ✅ Auto-generated TypeScript types from Umbraco's Delivery API
+- ✅ Type-safe API client with fetch support
+- ✅ Environment-based configuration
+- ✅ OpenAPI integration for seamless development
+
+## Frontend Setup
+
+### 1. Environment Variables
+
+<CodeBlock filename=".env.local">
+{`# Umbraco Configuration
+UMBRACO_API=https://your-umbraco-site.com
+
+# Optional: For client-side usage (be careful with security)
+# NEXT_PUBLIC_UMBRACO_API=https://your-umbraco-site.com`}
+</CodeBlock>
+
+<Alert title="Environment Variables">
+  <ul className="list-disc list-inside space-y-1">
+    <li><strong>UMBRACO_API:</strong> Server-side only, used for type generation and API calls</li>
+    <li><strong>NEXT_PUBLIC_UMBRACO_API:</strong> Client-side accessible, only if needed for browser requests</li>
+    <li>Never expose sensitive API keys in public environment variables</li>
+  </ul>
+</Alert>
+
+### 2. Type Generation Configuration
+
+The project uses `@hey-api/openapi-ts` to generate TypeScript types from Umbraco's Delivery API:
+
+<CodeBlock filename="openapi-ts.config.ts">
+{`import { defineConfig } from "@hey-api/openapi-ts";
+import { config } from "dotenv";
+
+// Load environment variables from .env file
+config();
+
+export default defineConfig({
+	input: \`\${process.env.UMBRACO_API}/umbraco/swagger/delivery/swagger.json\`,
+	output: "src/types/umbraco",
+	plugins: ["@hey-api/client-fetch"],
+});`}
+</CodeBlock>
+
+### 3. Package.json Scripts
+
+The type generation is automated via npm scripts:
+
+<CodeBlock filename="package.json">
+{`{
+  "scripts": {
+    "generate-types": "NODE_TLS_REJECT_UNAUTHORIZED=0 openapi-ts"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.80.18"
+  }
+}`}
+</CodeBlock>
+
+<Alert title="SSL Configuration">
+  The `NODE_TLS_REJECT_UNAUTHORIZED=0` flag is used for development with self-signed certificates. Remove this in production with proper SSL certificates.
+</Alert>
+
+### 4. Generated Types Structure
+
+After running type generation, you'll have:
+
+<CodeBlock language="text">
+{`src/types/umbraco/
+├── index.ts              # Export barrel
+├── types.gen.ts          # Generated type definitions
+├── sdk.gen.ts            # Generated SDK functions
+└── client.gen.ts         # Generated API client`}
+</CodeBlock>
+
+## Umbraco Backend Setup
+
+### 1. Install DeliveryApiExtensions
+
+Install the NuGet package in your Umbraco project:
+
+<CodeBlock language="xml" filename="YourProject.csproj">
+{`<PackageReference Include="Umbraco.Community.DeliveryApiExtensions" Version="13.1.0" />`}
+</CodeBlock>
+
+Or via Package Manager Console:
+
+<CodeBlock language="powershell">
+{`Install-Package Umbraco.Community.DeliveryApiExtensions`}
+</CodeBlock>
+
+### 2. Configure Delivery API
+
+Enable the Delivery API in your `appsettings.json`:
+
+<CodeBlock filename="appsettings.json">
+{`{
+  "Umbraco": {
+    "CMS": {
+      "DeliveryApi": {
+        "Enabled": true,
+        "PublicAccess": true,
+        "DisableRedirectUrlTracking": true,
+        "RichTextOutputAsJson": true
+      }
+    }
+  }
+}`}
+</CodeBlock>
+
+### 3. Configure CORS (if needed)
+
+For development or cross-origin requests, configure CORS in `Program.cs`:
+
+<CodeBlock filename="Program.cs">
+{`builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000", "https://your-frontend-domain.com")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+// After app is built
+app.UseCors("AllowFrontend");`}
+</CodeBlock>
+
+## Content Modeling Best Practices
+
+### 1. Document Types
+
+Create your document types with the Delivery API in mind:
+
+<Alert title="API Considerations">
+  <ul className="list-disc list-inside space-y-1">
+    <li>Use clear, descriptive property aliases</li>
+    <li>Enable properties for the Delivery API in the document type settings</li>
+    <li>Consider JSON output for rich text editors</li>
+    <li>Use consistent naming conventions</li>
+  </ul>
+</Alert>
+
+### 2. Property Expansion
+
+Configure which properties should be expanded in API responses:
+
+<CodeBlock filename="Example Content Usage">
+{`// This will automatically expand nested content
+const content = await getContentByPath("/home");
+
+// Access expanded properties
+const heroSection = content.properties.heroSection.content[0];
+const heroTitle = heroSection.properties.title.value;`}
+</CodeBlock>
+
+## Development Workflow
+
+### 1. Generate Types
+
+Run type generation whenever your Umbraco schema changes:
+
+<CodeBlock language="bash">
+{`npm run generate-types`}
+</CodeBlock>
+
+## API Endpoints
+
+The Delivery API provides several useful endpoints:
+
+<CodeBlock language="text">
+{`GET /umbraco/delivery/api/v1/content/item/{id}        # Get content by ID
+GET /umbraco/delivery/api/v1/content                   # Get content with query
+GET /umbraco/delivery/api/v1/content/item/{id}/children # Get children
+GET /umbraco/delivery/api/v1/media/item/{id}           # Get media by ID
+GET /umbraco/swagger/delivery/swagger.json             # OpenAPI schema`}
+</CodeBlock>
+
+## Troubleshooting
+
+### Common Issues
+
+<Alert variant="warning" title="Type Generation Fails">
+  <ul className="list-disc list-inside space-y-1">
+    <li>Ensure Umbraco Delivery API is enabled</li>
+    <li>Check that the OpenAPI endpoint is accessible</li>
+    <li>Verify environment variables are correct</li>
+    <li>For development, ensure SSL settings are properly configured</li>
+  </ul>
+</Alert>
+
+### Debugging API Responses
+
+<CodeBlock filename="src/lib/debug-umbraco.ts">
+{`import { client } from '@/types/umbraco';
+
+// Enable debugging for API calls
+client.setConfig({
+  baseUrl: process.env.UMBRACO_API,
+  // Add request/response interceptors for debugging
+  fetch: async (input, init) => {
+    console.log('API Request:', input, init);
+    const response = await fetch(input, init);
+    console.log('API Response:', response.status, await response.clone().text());
+    return response;
+  }
+});`}
+</CodeBlock>
+
+## Removing Umbraco Integration
+
+If you don't need Umbraco integration, you can safely remove:
+
+<Alert variant="warning" title="Cleanup Steps">
+  <ol className="list-decimal list-inside space-y-1">
+    <li>Delete the `src/types/umbraco/` directory</li>
+    <li>Delete the `src/lib/umbraco.ts` file</li>
+    <li>Delete the `src/components/umbraco/` directory</li>
+    <li>Remove the openapi-ts configuration</li>
+    <li>Remove the generate-types script from package.json</li>
+    <li>Remove environment variables</li>
+  </ol>
+</Alert>
+
+### Dependencies to Remove
+
+<CodeBlock language="bash">
+{`npm uninstall @hey-api/openapi-ts`}
+</CodeBlock>
+
+## Resources
+
+- 📚 [Umbraco Delivery API Documentation](https://docs.umbraco.com/umbraco-cms/reference/content-delivery-api)
+- 🔧 [DeliveryApiExtensions Package](https://github.com/rickbutterfield/Umbraco.Community.DeliveryApiExtensions)
+- 🎯 [OpenAPI TypeScript Generator](https://github.com/hey-api/openapi-ts)
+- 💡 [Umbraco Headless Documentation](https://docs.umbraco.com/umbraco-cms/fundamentals/setup/server-setup/load-balancing/flexible-advanced#umbraco-as-a-headless-cms)

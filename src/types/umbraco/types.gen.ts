@@ -20,12 +20,12 @@ export type ApiBlockItemModel = {
 };
 
 export type ApiBlockListModel = {
-    items: Array<ApiBlockItemModel | ApiBlockGridItemModel>;
+    items: Array<ApiBlockItemModel>;
 };
 
 export type ApiContentRouteModel = {
     path: string;
-    startItem: ApiContentStartItemModel;
+    startItem: IApiContentStartItemModel;
 };
 
 export type ApiContentStartItemModel = {
@@ -33,13 +33,13 @@ export type ApiContentStartItemModel = {
     path: string;
 };
 
-export type ContentPageContentModel = IApiContentModelBase & {
+export type ContentPageContentModel = IApiContentModel & {
     contentType: 'contentPage';
 } & {
     properties?: ContentPagePropertiesModel;
 };
 
-export type ContentPageContentResponseModel = IApiContentResponseModelBase & {
+export type ContentPageContentResponseModel = IApiContentResponseModel & {
     contentType: 'contentPage';
 } & ContentPageContentModel;
 
@@ -49,7 +49,7 @@ export type ContentPagePropertiesModel = {
     blocks?: ApiBlockListModel;
 };
 
-export type HeroElementModel = IApiElementModelBase & {
+export type HeroElementModel = IApiElementModel & {
     contentType: 'hero';
 } & {
     properties?: HeroPropertiesModel;
@@ -70,40 +70,53 @@ export type HttpValidationProblemDetails = ProblemDetails & {
     } | undefined;
 };
 
-export type IApiContentModel = ContentPageContentModel;
-
-export type IApiContentModelBase = IApiElementModelBase & {
-    contentType: 'IApiContentModelBase';
+export type IApiContentModel = IApiElementModel & {
+    contentType: 'IApiContentModel';
 } & {
     readonly id: string;
     readonly contentType: string;
+    readonly properties: {
+        [key: string]: unknown;
+    };
     readonly name?: string | null;
     readonly createDate: string;
     readonly updateDate: string;
-    route: ApiContentRouteModel;
+    route: IApiContentRouteModel;
 };
 
-export type IApiContentResponseModel = ContentPageContentResponseModel;
-
-export type IApiContentResponseModelBase = IApiContentModelBase & {
-    contentType: 'IApiContentResponseModelBase';
+export type IApiContentResponseModel = IApiContentModel & {
+    contentType: 'IApiContentResponseModel';
 } & {
     readonly id: string;
     readonly contentType: string;
+    readonly properties: {
+        [key: string]: unknown;
+    };
     readonly name?: string | null;
     readonly createDate: string;
     readonly updateDate: string;
-    route: ApiContentRouteModel;
+    route: IApiContentRouteModel;
     readonly cultures: {
-        [key: string]: ApiContentRouteModel;
+        [key: string]: IApiContentRouteModel;
     };
 };
 
-export type IApiElementModel = HeroElementModel;
+export type IApiContentRouteModel = {
+    readonly path: string;
+    startItem: IApiContentStartItemModel;
+};
 
-export type IApiElementModelBase = {
+export type IApiContentStartItemModel = {
+    readonly id: string;
+    readonly path: string;
+};
+
+export type IApiElementModel = {
     readonly id: string;
     readonly contentType: string;
+    readonly properties: {
+        [key: string]: unknown;
+    };
 };
 
 export type IApiMediaWithCropsModel = {
@@ -241,7 +254,7 @@ export type GetContent20Errors = {
     /**
      * Bad Request
      */
-    400: ProblemDetails | HttpValidationProblemDetails;
+    400: ProblemDetails;
     /**
      * Not Found
      */
@@ -492,7 +505,7 @@ export type GetMedia20Errors = {
     /**
      * Bad Request
      */
-    400: ProblemDetails | HttpValidationProblemDetails;
+    400: ProblemDetails;
 };
 
 export type GetMedia20Error = GetMedia20Errors[keyof GetMedia20Errors];

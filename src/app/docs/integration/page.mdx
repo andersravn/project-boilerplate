@@ -1,0 +1,115 @@
+import { CodeBlock, ComponentPreview } from '@/components/docs/documentation-components';
+import { Alert, Badge } from '@/components/docs/ui-helpers';
+
+# CMS Integration Guide
+
+This boilerplate includes support for multiple CMS systems. You can remove the integrations you don't need.
+
+## Supported CMS Systems
+
+<div className="grid gap-4 md:grid-cols-2 mb-6">
+  <div className="border rounded-lg p-4">
+    <div className="flex items-center gap-2 mb-2">
+      <h3 className="text-lg font-semibold">Uniform</h3>
+      <Badge variant="success">Included</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-3">
+      Visual CMS with Next.js App Router support and component mapping.
+    </div>
+    <a href="/docs/integration/uniform" className="text-primary text-sm hover:underline">
+      Setup guide →
+    </a>
+  </div>
+  
+  <div className="border rounded-lg p-4">
+    <div className="flex items-center gap-2 mb-2">
+      <h3 className="text-lg font-semibold">Umbraco</h3>
+      <Badge variant="success">Included</Badge>
+    </div>
+    <div className="text-sm text-muted-foreground mb-3">
+      Headless CMS with .NET backend and auto-generated TypeScript types.
+    </div>
+    <a href="/docs/integration/umbraco" className="text-primary text-sm hover:underline">
+      Setup guide →
+    </a>
+  </div>
+</div>
+
+## General Integration Principles
+
+### Keep UI Components Separate
+
+Design your UI components to be CMS-agnostic:
+
+<CodeBlock filename="src/components/ui/hero.tsx">
+{`interface HeroProps {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+export function Hero({ title, subtitle, ctaText, ctaLink }: HeroProps) {
+  return (
+    <section className="py-24 px-4">
+      <div className="container mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-4">{title}</h1>
+        {subtitle && (
+          <p className="text-xl text-muted-foreground mb-8">{subtitle}</p>
+        )}
+        {ctaText && ctaLink && (
+          <Button asChild>
+            <a href={ctaLink}>{ctaText}</a>
+          </Button>
+        )}
+      </div>
+    </section>
+  );
+}`}
+</CodeBlock>
+
+### Create CMS-Specific Wrappers
+
+Then create thin wrapper components for each CMS:
+
+<CodeBlock filename="src/cms/uniform/Hero.tsx">
+{`import { Hero } from '@/components/ui/hero';
+import { ComponentProps } from './types';
+
+export function UniformHero({ component }: ComponentProps) {
+  const { title, subtitle, ctaText, ctaLink } = component.parameters || {};
+  
+  return (
+    <Hero
+      title={title?.value || 'Default Title'}
+      subtitle={subtitle?.value}
+      ctaText={ctaText?.value}
+      ctaLink={ctaLink?.value}
+    />
+  );
+}`}
+</CodeBlock>
+
+## Adding Other CMS Systems
+
+To add support for another CMS:
+
+1. **Create a new integration directory**: `src/app/docs/integration/[cms-name]/`
+2. **Install CMS SDK**: Add the necessary packages
+3. **Create component wrappers**: Map your UI components to CMS components
+4. **Configure routing**: Set up catch-all routes and data fetching
+5. **Add environment variables**: Configure API keys and settings
+
+## Best Practices
+
+<Alert title="CMS Integration Tips">
+  <ul className="list-disc list-inside space-y-1">
+    <li>Keep UI components separate from CMS logic</li>
+    <li>Use TypeScript for CMS data structures</li>
+    <li>Implement proper error handling for missing content</li>
+    <li>Add preview modes for content editors</li>
+    <li>Use environment variables for all CMS configuration</li>
+    <li>Create thin wrapper components for each CMS</li>
+    <li>Test components both with and without CMS data</li>
+  </ul>
+</Alert>

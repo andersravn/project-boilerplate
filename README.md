@@ -7,7 +7,7 @@ A production-ready boilerplate for building React applications with a comprehens
 🧩 **UI Component Library** - Reusable, accessible components based on shadcn/ui
 📱 **Framework Agnostic** - Works with React standalone or Next.js  
 🎨 **Customizable Design System** - Easy theming with Tailwind CSS
-📝 **CMS Integration** - Boilerplate for Uniform, Contentful, and other CMS systems
+📝 **CMS Integration** - Boilerplate for Uniform, Umbraco, and other CMS systems
 📚 **Comprehensive Documentation** - Interactive docs with copy-paste examples
 🔧 **Developer Experience** - TypeScript, ESLint, and modern tooling
 
@@ -85,6 +85,18 @@ Complete integration with visual editing and component mapping.
 # Set up environment variables
 cp .env.example .env.local
 # Add your Uniform project credentials
+```
+
+### Umbraco (Included)
+
+Auto-generated TypeScript types from Umbraco's Delivery API.
+
+```bash
+# Configure your Umbraco API endpoint
+UMBRACO_API=https://your-umbraco-site.com
+
+# Generate TypeScript types
+npm run generate-types
 ```
 
 ### Other CMS Systems
