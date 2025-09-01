@@ -3,11 +3,471 @@ import { Alert, Badge } from '@/components/docs/ui-helpers';
 
 # Umbraco Integration
 
-Complete setup guide for Umbraco headless CMS integration with auto-generated TypeScript types and Delivery API.
+This guide outlines the standard approach for integrating Umbraco CMS with Next.js using the Delivery API. This setup provides a type-safe, scalable foundation for multi-CMS architectures.
 
-## Overview
+## Architecture Overview
 
-This boilerplate includes:
+The integration follows a modular pattern with clear separation of concerns:
+
+- **Content API Layer**: Handles all communication with Umbraco's Delivery API
+- **Component Resolver**: Maps Umbraco content types to React components  
+- **Dynamic Routing**: Uses Next.js catch-all routes for flexible URL handling
+- **Type Safety**: Leverages auto-generated TypeScript types from OpenAPI specs
+
+## File Structure
+
+```
+src/
+├── app/umbraco/[[...slug]]/
+│   └── page.tsx                 # Dynamic route handler
+├── services/
+│   └── content-api.ts           # Umbraco API integration
+├── umbraco/
+│   ├── lib/
+│   │   └── component-resolver.tsx
+│   └── components/
+│       ├── pages/
+│       │   └── content-page.tsx
+│       └── blocks/
+│           └── hero-block.tsx
+└── types/umbraco/
+    ├── types.gen.ts             # Auto-generated types
+    ├── sdk.gen.ts               # Auto-generated SDK methods
+    └── client/                  # Auto-generated client
+```
+
+## Core Components
+
+### 1. Content API Service
+
+The content API service provides a clean interface for fetching content from Umbraco's Delivery API.
+
+**Location:** `/src/services/content-api.ts`
+
+<CodeBlock language="typescript">
+{`import { createClient } from "@/types/umbraco/client";
+import { getContentItemByPath20 } from "@/types/umbraco/sdk.gen";
+import type { IApiContentResponseModel } from "@/types/umbraco/types.gen";
+
+// Create a client instance
+const client = createClient({
+    baseUrl: process.env.NEXT_PUBLIC_UMBRACO_API || "https://localhost:44308",
+});
+
+export async function getContentFromSlug(
+    slug: string[],
+    locale: string = "en-US",
+): Promise<IApiContentResponseModel | null> {
+    try {
+        // Convert slug array to path string
+        const path = slug.length > 0 ? \`/\${slug.join("/")}\` : "/";
+
+        // Make the API call using the generated SDK
+        const response = await getContentItemByPath20({
+            client,
+            path: { path },
+            headers: { "Accept-Language": locale },
+            query: { expand: "all" },
+        });
+
+        return response.data as IApiContentResponseModel || null;
+    } catch (error) {
+        console.error("Error fetching content:", error);
+        return null;
+    }
+}`}
+</CodeBlock>
+
+**Key Features:**
+- Uses auto-generated SDK methods for type safety
+- Handles path resolution and language headers  
+- Provides error handling and fallbacks
+- Configurable via environment variables
+
+**Usage:**
+<CodeBlock language="typescript">
+{`// Fetch a page by slug segments
+const content = await getContentFromSlug(['about', 'team'], 'en-US');
+
+// Fetch the home page  
+const homePage = await getContentFromSlug([], 'en-US');`}
+</CodeBlock>
+
+### 2. Component Resolver
+
+The component resolver is the heart of the content rendering system. It maps Umbraco content types to their corresponding React components.
+
+**Location:** `/src/umbraco/lib/component-resolver.tsx`
+
+<CodeBlock language="typescript">
+{`import type {
+    ContentPagePropertiesModel,
+    HeroPropertiesModel,
+    IApiContentRouteModel,
+} from "@/types/umbraco";
+import { HeroBlock } from "@/umbraco/components/blocks/hero-block";
+import { ContentPage } from "@/umbraco/components/pages/content-page";
+
+export default function componentResolver(
+    contentType: string,
+    properties: Record<string, unknown>,
+    route?: IApiContentRouteModel,
+) {
+    switch (contentType) {
+        case "contentPage":
+            return (
+                <ContentPage
+                    data={properties as ContentPagePropertiesModel}
+                    route={route}
+                />
+            );
+
+        case "hero":
+            return <HeroBlock properties={properties as HeroPropertiesModel} />;
+
+        default:
+            return (
+                <div className="container mx-auto p-4">
+                    <div className="my-4 rounded-md bg-red-100 p-4 shadow-md">
+                        <h2 className="font-bold text-red-800">
+                            Component not found: {contentType}
+                        </h2>
+                        <pre className="mt-2 text-red-600 text-sm">
+                            {JSON.stringify(properties, null, 2)}
+                        </pre>
+                    </div>
+                </div>
+            );
+    }
+}`}
+</CodeBlock>
+
+**Key Features:**
+- Type-safe component mapping
+- Extensible switch statement pattern
+- Error handling for unknown content types
+- Debug information in development
+
+**How it works:**
+1. Receives content type, properties, and route information
+2. Maps content type to appropriate React component
+3. Passes typed properties to the component
+4. Provides fallback for unmapped content types
+
+**Adding new content types:**
+<CodeBlock language="typescript">
+{`case "newContentType":
+    return <NewComponent properties={properties as NewContentTypeModel} />;`}
+</CodeBlock>
+
+### 3. Dynamic Slug Route
+
+The catch-all route handles all Umbraco pages dynamically, providing both page rendering and metadata generation.
+
+**Location:** `/src/app/umbraco/[[...slug]]/page.tsx`
+
+<CodeBlock language="typescript">
+{`import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { getContentFromSlug } from "@/services/content-api";
+import componentResolver from "@/umbraco/lib/component-resolver";
+
+type PageParams = {
+    params: Promise<{ locale: string; slug?: string[] }>;
+    searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+// Generate SEO metadata from content
+export async function generateMetadata(
+    pageParams: PageParams,
+    _parent: ResolvingMetadata,
+): Promise<Metadata> {
+    const { slug = [], locale } = await pageParams.params;
+    const data = await getContentFromSlug(slug, locale);
+
+    if (!data) {
+        return { title: "Page not found" };
+    }
+
+    const contentData = data as {
+        contentType: string;
+        properties: Record<string, unknown>;
+    };
+
+    const properties = contentData.properties as ContentPagePropertiesModel;
+    return {
+        title: properties.title || "Untitled Page",
+        description: properties.description || "No description available",
+    };
+}
+
+// Main page component
+export default async function SlugPage(pageParams: PageParams) {
+    const { slug = [], locale } = await pageParams.params;
+    const data = await getContentFromSlug(slug, locale);
+
+    if (!data) {
+        notFound();
+    }
+
+    const contentData = data as {
+        contentType: string;
+        properties: Record<string, unknown>;
+        route?: IApiContentRouteModel;
+    };
+
+    return componentResolver(
+        contentData.contentType,
+        contentData.properties,
+        contentData.route,
+    );
+}`}
+</CodeBlock>
+
+**Key Features:**
+- Handles any URL structure from Umbraco
+- Generates SEO metadata from content
+- Type-safe parameter handling
+- Automatic 404 handling for missing content
+
+**URL Examples:**
+- `/` → Home page (empty slug)
+- `/about` → `['about']`
+- `/about/team` → `['about', 'team']`
+- `/products/category/item` → `['products', 'category', 'item']`
+
+## Content Components
+
+### Content Page Component
+
+The main page component that renders Umbraco content pages with their associated blocks.
+
+**Location:** `/src/umbraco/components/pages/content-page.tsx`
+
+<CodeBlock language="typescript">
+{`import type {
+    ContentPagePropertiesModel,
+    IApiContentRouteModel,
+} from "@/types/umbraco/types.gen";
+import componentResolver from "@/umbraco/lib/component-resolver";
+
+interface ContentPageProps {
+    data: ContentPagePropertiesModel;
+    route?: IApiContentRouteModel;
+}
+
+export function ContentPage({ data, route }: ContentPageProps) {
+    return (
+        <div className="content-page">
+            {/* Page Title */}
+            {data.title && (
+                <header className="mb-8">
+                    <h1 className="font-bold text-4xl text-gray-900">
+                        {data.title}
+                    </h1>
+                    {data.description && (
+                        <p className="mt-4 text-gray-600 text-xl">
+                            {data.description}
+                        </p>
+                    )}
+                </header>
+            )}
+
+            {/* Render blocks */}
+            {data.blocks?.items && data.blocks.items.length > 0 && (
+                <div className="blocks-container">
+                    {data.blocks.items.map((block, index) => (
+                        <div
+                            key={\`\${block.content.contentType}-\${index}\`}
+                            className="mb-8 block"
+                        >
+                            {componentResolver(
+                                block.content.contentType,
+                                block.content.properties,
+                                route,
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}`}
+</CodeBlock>
+
+### Block Components
+
+Individual block components that render specific content modules.
+
+**Example: Hero Block** (`/src/umbraco/components/blocks/hero-block.tsx`)
+
+<CodeBlock language="typescript">
+{`import Image from "next/image";
+import type { HeroPropertiesModel } from "@/types/umbraco/types.gen";
+
+interface HeroBlockProps {
+    properties: HeroPropertiesModel;
+}
+
+export function HeroBlock({ properties }: HeroBlockProps) {
+    return (
+        <section className="hero-block bg-gray-900 py-20 text-white">
+            <div className="container mx-auto px-4">
+                <div className="mx-auto max-w-4xl text-center">
+                    {/* Hero Image */}
+                    {properties.image && properties.image.length > 0 && (
+                        <div className="mb-8">
+                            <Image
+                                src={properties.image[0].url}
+                                alt={properties.image[0].name || properties.heading || "Hero image"}
+                                width={800}
+                                height={400}
+                                className="mx-auto h-64 w-full rounded-lg object-cover shadow-lg"
+                                priority
+                            />
+                        </div>
+                    )}
+
+                    {/* Hero Heading */}
+                    {properties.heading && (
+                        <h1 className="mb-6 font-bold text-5xl leading-tight">
+                            {properties.heading}
+                        </h1>
+                    )}
+
+                    {/* Hero Subtitle */}
+                    {properties.subtitle && (
+                        <p className="mb-8 text-gray-300 text-xl leading-relaxed">
+                            {properties.subtitle}
+                        </p>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+}`}
+</CodeBlock>
+
+## Type Safety
+
+The integration leverages auto-generated TypeScript types from Umbraco's OpenAPI specification:
+
+<CodeBlock language="typescript">
+{`// Generated types ensure compile-time safety
+import type {
+    ContentPagePropertiesModel,
+    HeroPropertiesModel,
+    IApiContentResponseModel
+} from "@/types/umbraco/types.gen";`}
+</CodeBlock>
+
+## Environment Configuration
+
+<Alert type="info">
+Required environment variables for Umbraco integration.
+</Alert>
+
+<CodeBlock language="bash">
+{`# .env.local
+NEXT_PUBLIC_UMBRACO_API=https://your-umbraco-site.com`}
+</CodeBlock>
+
+For development with local Umbraco:
+<CodeBlock language="bash">
+{`NEXT_PUBLIC_UMBRACO_API=https://localhost:44308`}
+</CodeBlock>
+
+## Development Workflow
+
+### 1. Setting up Types
+
+Generate types from your Umbraco server:
+<CodeBlock language="bash">
+{`npm run generate-types`}
+</CodeBlock>
+
+### 2. Adding New Content Types
+
+1. Create the component in appropriate folder
+2. Add the mapping in component resolver
+3. Import the generated type for the content type
+
+Example:
+<CodeBlock language="typescript">
+{`// 1. Create component
+export function MyNewBlock({ properties }: { properties: MyNewBlockModel }) {
+    return <div>My new block content</div>;
+}
+
+// 2. Add to component resolver
+case "myNewBlock":
+    return <MyNewBlock properties={properties as MyNewBlockModel} />;`}
+</CodeBlock>
+
+### 3. Testing
+
+Start your development server and navigate to any Umbraco URL:
+<CodeBlock language="bash">
+{`npm run dev`}
+</CodeBlock>
+
+## Best Practices
+
+### 1. Namespacing
+All Umbraco-related code is namespaced under `/umbraco/` folders to support multi-CMS architectures.
+
+### 2. Error Handling
+- Content API returns `null` for missing content
+- Component resolver shows debug information for unknown types
+- 404 pages are automatically generated for missing content
+
+### 3. Performance
+- Uses Next.js Image component for optimized images
+- Leverages server-side rendering for SEO
+- Generates static metadata where possible
+
+### 4. Extensibility
+- Easy to add new content types via component resolver
+- Modular component structure
+- Type-safe property passing
+
+## Troubleshooting
+
+### Common Issues
+
+<Alert type="warning">
+Common issues and their solutions when working with Umbraco integration.
+</Alert>
+
+1. **404 errors**: Check that your Umbraco Delivery API is enabled and accessible
+2. **Type errors**: Regenerate types after Umbraco schema changes  
+3. **Component not found**: Ensure content type mapping exists in component resolver
+4. **Build errors**: Verify all imports and type assertions are correct
+
+### Debug Information
+
+The component resolver shows detailed debug information for unknown content types, including:
+- Content type name
+- Properties structure  
+- JSON representation of the data
+
+This helps identify what content types need to be added to the resolver.
+
+## Multi-CMS Considerations
+
+This setup is designed to work alongside other CMS integrations:
+
+- Umbraco content is routed under `/umbraco/*` paths
+- Other CMS systems can use different path prefixes
+- Shared components can be placed in common directories
+- Type safety is maintained across all systems
+
+## Next Steps
+
+1. **Set up your environment**: Copy `.env.example` to `.env.local` and update the Umbraco API URL
+2. **Create content**: Set up content pages with hero blocks in your Umbraco backend
+3. **Extend components**: Add more block types as needed by updating the component resolver
+4. **Customize styling**: Update the Tailwind CSS classes to match your design system
 
 - ✅ Auto-generated TypeScript types from Umbraco's Delivery API
 - ✅ Type-safe API client with fetch support
@@ -186,6 +646,132 @@ GET /umbraco/delivery/api/v1/content/item/{id}/children # Get children
 GET /umbraco/delivery/api/v1/media/item/{id}           # Get media by ID
 GET /umbraco/swagger/delivery/swagger.json             # OpenAPI schema`}
 </CodeBlock>
+
+## Security Considerations
+
+<Alert type="info">
+Important security considerations for production deployments.
+</Alert>
+
+- API URLs are exposed client-side (uses `NEXT_PUBLIC_` prefix)
+- Content is fetched server-side for initial page loads
+- No authentication required for public content
+- Consider implementing caching for production environments
+
+## Performance Optimization
+
+### Recommended Optimizations
+
+1. **Image Optimization**: Already implemented with Next.js Image
+2. **Caching**: Consider implementing Redis or similar for content caching
+3. **ISR**: Use Incremental Static Regeneration for frequently updated content
+4. **CDN**: Deploy behind a CDN for global content delivery
+
+## Example Implementation
+
+### Complete Content Page Implementation
+
+<CodeBlock language="typescript">
+{`// src/umbraco/components/pages/content-page.tsx
+import type { ContentPagePropertiesModel, IApiContentRouteModel } from '@/types/umbraco/types.gen';
+import componentResolver from '@/umbraco/lib/component-resolver';
+
+interface ContentPageProps {
+    data: ContentPagePropertiesModel;
+    route?: IApiContentRouteModel;
+}
+
+export function ContentPage({ data, route }: ContentPageProps) {
+    return (
+        <div className="content-page">
+            {data.title && (
+                <header className="mb-8">
+                    <h1 className="font-bold text-4xl text-gray-900">{data.title}</h1>
+                    {data.description && (
+                        <p className="mt-4 text-gray-600 text-xl">{data.description}</p>
+                    )}
+                </header>
+            )}
+
+            {data.blocks?.items && data.blocks.items.length > 0 && (
+                <div className="blocks-container">
+                    {data.blocks.items.map((block, index) => (
+                        <div key={\`\${block.content.contentType}-\${index}\`} className="mb-8 block">
+                            {componentResolver(
+                                block.content.contentType,
+                                block.content.properties,
+                                route
+                            )}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}`}
+</CodeBlock>
+
+### Complete Hero Block Implementation
+
+<CodeBlock language="typescript">
+{`// src/umbraco/components/blocks/hero-block.tsx
+import Image from 'next/image';
+import type { HeroPropertiesModel } from '@/types/umbraco/types.gen';
+
+interface HeroBlockProps {
+    properties: HeroPropertiesModel;
+}
+
+export function HeroBlock({ properties }: HeroBlockProps) {
+    return (
+        <section className="hero-block bg-gray-900 py-20 text-white">
+            <div className="container mx-auto px-4">
+                <div className="mx-auto max-w-4xl text-center">
+                    {properties.image && properties.image.length > 0 && (
+                        <div className="mb-8">
+                            <Image
+                                src={properties.image[0].url}
+                                alt={properties.image[0].name || properties.heading || 'Hero image'}
+                                width={800}
+                                height={400}
+                                className="mx-auto h-64 w-full rounded-lg object-cover shadow-lg"
+                                priority
+                            />
+                        </div>
+                    )}
+
+                    {properties.heading && (
+                        <h1 className="mb-6 font-bold text-5xl leading-tight">
+                            {properties.heading}
+                        </h1>
+                    )}
+
+                    {properties.subtitle && (
+                        <p className="mb-8 text-gray-300 text-xl leading-relaxed">
+                            {properties.subtitle}
+                        </p>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+}`}
+</CodeBlock>
+
+## Conclusion
+
+<Alert type="success">
+This Umbraco integration provides a robust, type-safe foundation for content management in Next.js applications.
+</Alert>
+
+**Key Benefits:**
+- **Type Safety**: Auto-generated types prevent runtime errors
+- **Scalability**: Modular component structure grows with your project
+- **Performance**: Server-side rendering and optimized images
+- **Developer Experience**: Clear patterns and debugging tools
+- **Multi-CMS Ready**: Designed to work alongside other CMS systems
+
+The setup serves as a **standard approach** that can be reused across projects, providing consistency and reducing development time for future Umbraco integrations.
 
 ## Troubleshooting
 

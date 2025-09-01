@@ -4,8 +4,7 @@ import type { IApiContentResponseModel } from "@/types/umbraco/types.gen";
 
 // Create a client instance
 const client = createClient({
-    baseUrl:
-        process.env.NEXT_PUBLIC_UMBRACO_API_URL || "https://localhost:44308",
+    baseUrl: process.env.UMBRACO_API,
 });
 
 export async function getContentFromSlug(
@@ -27,6 +26,7 @@ export async function getContentFromSlug(
             },
             query: {
                 expand: "all",
+                fields: "properties[$all]",
             },
         });
 
