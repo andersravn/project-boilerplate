@@ -7,7 +7,7 @@ interface HeroBlockProps {
 
 export function HeroBlock({ properties }: HeroBlockProps) {
     return (
-        <section className="hero-block bg-gray-900 py-20 text-white">
+        <section className="hero-block bg-surface-default py-20 text-text-default">
             <div className="container mx-auto px-4">
                 <div className="mx-auto max-w-4xl text-center">
                     {/* Hero Image */}
@@ -30,14 +30,14 @@ export function HeroBlock({ properties }: HeroBlockProps) {
 
                     {/* Hero Heading */}
                     {properties.heading && (
-                        <h1 className="mb-6 font-bold text-5xl leading-tight">
+                        <h1 className="mb-6 font-bold text-5xl text-text-default leading-tight">
                             {properties.heading}
                         </h1>
                     )}
 
                     {/* Hero Subtitle */}
                     {properties.subtitle && (
-                        <p className="mb-8 text-gray-300 text-xl leading-relaxed">
+                        <p className="mb-8 text-text-subtle-2 text-xl leading-relaxed">
                             {properties.subtitle}
                         </p>
                     )}
