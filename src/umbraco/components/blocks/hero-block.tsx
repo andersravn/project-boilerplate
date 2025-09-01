@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SpacingDemo } from "@/components/spacing-demo";
 import type { HeroPropertiesModel } from "@/types/umbraco/types.gen";
 
 interface HeroBlockProps {
@@ -41,7 +42,15 @@ export function HeroBlock({ properties }: HeroBlockProps) {
                             {properties.subtitle}
                         </p>
                     )}
+
+                    <button
+                        className="rounded-round border px-m py-s text-[17.24px]"
+                        type="button"
+                    >
+                        Hej
+                    </button>
                 </div>
+                <SpacingDemo />
             </div>
         </section>
     );

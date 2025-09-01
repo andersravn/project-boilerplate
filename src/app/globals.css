@@ -64,14 +64,26 @@
 	--color-surface-subtle-3: var(--neutrals-200);
 	--color-disabled-muted-surface-2: var(--neutrals-200);
 
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
+	/* Design System Spacing Tokens */
+	--spacing-xxs: 0.25rem;   /* 4px */
+	--spacing-xs: 0.5rem;   /* 8px */
+	--spacing-s: .75rem;      /* 12px */
+	--spacing-sm: 1rem;    /* 16px */
+	--spacing-m: 1.5rem;    /* 24px */
+	--spacing-l: 2.5rem;    /* 40px */
+	--spacing-xl: 3rem;    /* 48px */
+	--spacing-xxl: 4rem;     /* 64px */
+
+	--radius-xs: calc(var(--radius) * 1);
+	--radius-s: calc(var(--radius) * 2);
+	--radius-m: calc(var(--radius) * 3);
+	--radius-l: calc(var(--radius) * 4);
+	--radius-xl: calc(var(--radius) * 6);
+	--radius-round: 9999px;
 }
 
 :root {
-	--radius: 0.625rem;
+	--radius: 0.25rem;
 	--neutrals-white: #ffffff;
 	--neutrals-black: #1b1b1b;
 	--system-green-500: #0f8763;
